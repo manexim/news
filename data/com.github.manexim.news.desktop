@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=News
+GenericName=News
+Comment=The best news sources, all in one place
+Exec=com.github.manexim.news
+Icon=com.github.manexim.news
+Categories=GNOME;GTK;Network;News;Feeds;
+X-GNOME-UsesNotifications=false
