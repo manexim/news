@@ -51,7 +51,7 @@ sudo ninja uninstall
 
 ## Contributing
 
-If you want to contribute to news and make it better, your help is very welcome.
+If you want to contribute to News and make it better, your help is very welcome.
 
 ### How to make a clean pull request
 
@@ -62,7 +62,7 @@ If you want to contribute to news and make it better, your help is very welcome.
 -   Push your branch to your fork on GitHub, the remote `origin`.
 -   From your fork open a pull request in the correct branch. Target the `develop` branch!
 
-And last but not least: Always write your commit news in the present tense.
+And last but not least: Always write your commit messages in the present tense.
 Your commit message should describe what the commit, when applied, does to the code – not what you did to the code.
 
 ## License
