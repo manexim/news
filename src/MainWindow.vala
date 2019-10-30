@@ -52,8 +52,10 @@ public class MainWindow : Gtk.ApplicationWindow {
         stack = new Gtk.Stack ();
         add (stack);
 
-        var main_view = new Views.MainView ();
-        stack.add_named (main_view, "News");
+        var feed = new Controllers.FeedController (
+            new Models.Feed ("https://blog.elementary.io/feed.xml")
+        );
+        stack.add_named (feed.view, "News");
         history.add ("News");
 
         delete_event.connect (() => {

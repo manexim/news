@@ -19,14 +19,14 @@
 * Authored by: Marius Meisenzahl <mariusmeisenzahl@gmail.com>
 */
 
-public class Models.Article {
-    public string? title;
-    public string? about;
-    public string? content;
-    public string? url;
-    public string? favicon;
-    public DateTime? published;
-    public DateTime? updated;
+public class Models.Article : Object {
+    public string url { get; set; }
+    public string title { get; set; }
+    public string about { get; set; }
+    public string content { get; set; }
+    public string favicon { get; set; }
+    public DateTime published { get; set; }
+    public DateTime updated { get; set; }
 
     public string? image {
         owned get {

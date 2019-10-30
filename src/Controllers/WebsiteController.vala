@@ -19,26 +19,12 @@
 * Authored by: Marius Meisenzahl <mariusmeisenzahl@gmail.com>
 */
 
-public class Models.Feed : Object {
-    public string url { get; construct set; }
-    public Array<Article> articles { get; construct set; }
-    public string title { get; set; }
-    public string description { get; set; }
-    public string link { get; set; }
-    public string copyright { get; set; }
+public class Controllers.WebsiteController : Object {
+    public Models.Website model { get; construct set; }
 
-    public signal void added_article (Models.Article article);
-
-    public Feed (string url) {
+    public WebsiteController (Models.Website model) {
         Object (
-            url: url,
-            articles: new Array<Article> ()
+            model: model
         );
-    }
-
-    public void add_article (Models.Article article) {
-        articles.append_val (article);
-
-        added_article (article);
     }
 }

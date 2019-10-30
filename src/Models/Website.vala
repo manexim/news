@@ -19,11 +19,13 @@
 * Authored by: Marius Meisenzahl <mariusmeisenzahl@gmail.com>
 */
 
-public class Models.Website {
-    private string url;
+public class Models.Website : Object {
+    public string url { get; construct set; }
 
     public Website (string url) {
-        this.url = url;
+        Object (
+            url: url
+        );
     }
 
     public string feed_url {

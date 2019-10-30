@@ -1,5 +1,8 @@
 sources = [
     'Config/Constants.vala',
+    'Controllers/ArticleController.vala',
+    'Controllers/FeedController.vala',
+    'Controllers/WebsiteController.vala',
     'Models/Article.vala',
     'Models/Feed.vala',
     'Models/Website.vala',
@@ -9,7 +12,7 @@ sources = [
     'Utilities/URL.vala',
     'Views/ArticlePreview.vala',
     'Views/ArticleView.vala',
-    'Views/MainView.vala',
+    'Views/FeedView.vala',
     'Widgets/ArticleCarousel.vala',
     'Widgets/ArticleCarouselItem.vala',
     'Widgets/Image.vala',

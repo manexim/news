@@ -19,8 +19,14 @@
 * Authored by: Marius Meisenzahl <mariusmeisenzahl@gmail.com>
 */
 
-public class Views.MainView : Gtk.ScrolledWindow {
-    public MainView () {
+public class Views.FeedView : Gtk.ScrolledWindow {
+    public Models.Feed model { get; construct set; }
+
+    public FeedView (Models.Feed model) {
+        Object (
+            model: model
+        );
+
         var grid = new Gtk.Grid ();
         grid.margin = 12;
         add (grid);
@@ -34,9 +40,9 @@ public class Views.MainView : Gtk.ScrolledWindow {
 
         grid.attach (articles_grid, 0, 0, 1, 1);
 
-        var feed = new Models.Feed ("https://blog.elementary.io/feed.xml");
+        for (uint i = 0; i < model.articles.length; i++) {
+            var article = model.articles.index (i);
 
-        foreach (var article in feed.articles) {
             articles_carousel.add_article (article);
         }
 
@@ -47,6 +53,10 @@ public class Views.MainView : Gtk.ScrolledWindow {
                 article_view,
                 article.title
             );
+        });
+
+        model.added_article.connect ((article) => {
+            articles_carousel.add_article (article);
         });
     }
 }
