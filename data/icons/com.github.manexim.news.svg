@@ -131,6 +131,10 @@
        type="xygrid"
        id="grid16" />
   </sodipodi:namedview>
+  <path
+     style="fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 14 26.5 L 14 87.0625 L 39 101.49609 L 39 101.5 L 51.5 94.28125 L 51.5 77.015625 L 39 69.796875 L 91.5 100.10742 L 114 87.117188 L 114 26.5 L 94 38.046875 L 94 37.992188 L 81.5 45.208984 L 81.5 65.470703 L 14 26.5 z "
+     id="path866" />
   <g
      transform="translate(1.2e-6,-3.9990326)"
      id="g1145">
@@ -167,23 +171,14 @@
          style="fill:url(#linearGradient4097);fill-opacity:1;stroke:none" />
     </g>
   </g>
-  <g
-     id="g818"
-     transform="matrix(0.5,0,0,0.5,14,37.5)">
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:#2e7d32;fill-opacity:1"
-       id="path4"
-       d="M 50,64.59371 V 128 L 75,113.5625 V 79.0312 Z" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path866"
-       d="M 160,63 V 1.094011 L 200,-22 V 99.23473 L 155,125.21549 50,64.59371 v 63.3988 L 0,99.125 V -22 l 160,92.376043 z"
-       style="fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path870"
-       d="M 160,70.376043 135,55.942286 V 15.417215 L 160,0.983458 Z"
-       style="fill:#2e7d32;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-  </g>
+  <path
+     d="M 39,69.796855 V 101.5 L 51.5,94.28125 V 77.0156 Z"
+     id="path4"
+     style="fill:#2e7d32;fill-opacity:1;stroke-width:0.5"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#2e7d32;fill-opacity:1;stroke:none;stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 94,72.688021 81.5,65.471143 V 45.208607 L 94,37.991729 Z"
+     id="path870"
+     inkscape:connector-curvature="0" />
 </svg>
