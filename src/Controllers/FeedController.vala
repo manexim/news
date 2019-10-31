@@ -29,14 +29,11 @@ public class Controllers.FeedController : Object {
             view: new Views.FeedView (model)
         );
 
-        new Thread<void*> (null, () => {
-            update ();
 
-            return null;
-        });
+        update ();
     }
 
-    private void update () {
+    public void update () {
         var session = new Soup.Session ();
         var message = new Soup.Message ("GET", model.url);
 
@@ -59,11 +56,11 @@ public class Controllers.FeedController : Object {
         switch (root->name) {
             case "rss":
                 parse_rss (root);
-                return;
+                break;
             case "feed":
             default:
                 stderr.printf ("not implemented\n");
-                return;
+                break;
         }
     }
 
@@ -112,6 +109,8 @@ public class Controllers.FeedController : Object {
                                 break;
                         }
                     }
+
+                    new Controllers.ArticleController (article).update ();
 
                     model.add_article (article);
                     break;

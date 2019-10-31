@@ -22,20 +22,20 @@
 namespace Utilities.DateTime {
     GLib.DateTime? parse_rfc822 (string date) {
         var elements = new Gee.ArrayList<string>.wrap (date.split (" "));
-    
+
         if (elements.size == 0) {
             return null;
         }
-    
+
         // if there is a day of the week, remove it
         if (elements[0].length != 0 && elements[0][elements[0].length - 1] == ',') {
             elements.remove_at (0);
         }
-    
+
         if (elements.size != 5) {
             return null;
         }
-    
+
         var day = int.parse (elements[0]);
         int month = 1;
         switch (elements[1]) {
@@ -53,7 +53,7 @@ namespace Utilities.DateTime {
             case "Dec": month = 12; break;
         }
         var year = int.parse (elements[2]);
-    
+
         var time_arr = elements[3].split (":");
         var hour = int.parse (time_arr[0]);
         var minute = int.parse (time_arr[1]);
@@ -61,7 +61,7 @@ namespace Utilities.DateTime {
         if (time_arr.length >= 3) {
             second = int.parse (time_arr[2]);
         }
-    
+
         TimeZone zone;
         switch (elements[4]) {
             case "EDT":

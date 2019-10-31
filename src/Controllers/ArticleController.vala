@@ -29,4 +29,34 @@ public class Controllers.ArticleController : Object {
             view: new Views.ArticleView (model)
         );
     }
+
+    public void update () {
+        download_image ();
+        download_favicon ();
+    }
+
+    private void download_image () {
+        if (model.about != null) {
+            try {
+                Regex regex = new Regex (".*<img.*src=\"([^\"]*)\"");
+                MatchInfo mi;
+                var match = regex.match (model.about, 0, out mi);
+                if (match) {
+                    var image = mi.fetch (1);
+
+                    if (Utilities.URL.is_absolute (image)) {
+                        model.image = new Widgets.Image.from_url (image);
+                    } else {
+                        model.image = new Widgets.Image.from_url (Utilities.URL.join (Utilities.URL.base (model.url), image));
+                    }
+                }
+            } catch (RegexError e) {
+                stderr.printf ("RegexError %s\n", e.message);
+            }
+        }
+    }
+
+    private void download_favicon () {
+        model.favicon = new Widgets.Image.from_url ("https://elementary.io/favicon.ico");
+    }
 }

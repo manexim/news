@@ -24,32 +24,8 @@ public class Models.Article : Object {
     public string title { get; set; }
     public string about { get; set; }
     public string content { get; set; }
-    public string favicon { get; set; }
+    public Widgets.Image image { get; set; }
+    public Widgets.Image favicon { get; set; }
     public DateTime published { get; set; }
     public DateTime updated { get; set; }
-
-    public string? image {
-        owned get {
-            if (about != null) {
-                try {
-                    Regex regex = new Regex (".*<img.*src=\"([^\"]*)\"");
-                    MatchInfo mi;
-                    var match = regex.match (about, 0, out mi);
-                    if (match) {
-                        var _image = mi.fetch (1);
-
-                        if (Utilities.URL.is_absolute (_image)) {
-                            return _image;
-                        } else {
-                            return Utilities.URL.join (Utilities.URL.base (url), _image);
-                        }
-                    }
-                } catch (RegexError e) {
-                    stderr.printf ("RegexError %s\n", e.message);
-                }
-            }
-
-            return null;
-        }
-    }
 }

@@ -34,23 +34,20 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
 
     construct {
         if (article.image != null) {
-            icon = new Widgets.Image.from_url (article.image);
+            icon = article.image;
             icon.scale (320, 180);
-
+            icon.halign = Gtk.Align.CENTER;
         } else {
             icon = new Widgets.Image ();
         }
-        icon.halign = Gtk.Align.CENTER;
 
-        article.favicon = "https://elementary.io/favicon.ico";
         if (article.favicon != null) {
-            source_icon = new Widgets.Image.from_url (article.favicon);
+            source_icon = article.favicon;
             source_icon.scale_height (18);
+            source_icon.halign = Gtk.Align.START;
         } else {
             source_icon = new Widgets.Image ();
         }
-        source_icon.halign = Gtk.Align.START;
-
 
         source_label = new Gtk.Label ("elementary Blog");
         source_label.halign = Gtk.Align.START;

@@ -20,8 +20,6 @@
 */
 
 public class Widgets.ArticleCarousel : Gtk.FlowBox {
-    private Gee.HashMap<string, int> carousel_item_map;
-    private int index = 0;
     public signal void on_article_activated (Models.Article article);
 
     public ArticleCarousel () {
@@ -29,8 +27,6 @@ public class Widgets.ArticleCarousel : Gtk.FlowBox {
             activate_on_single_click: true,
             homogeneous: true
         );
-
-        carousel_item_map = new Gee.HashMap<string, int> ();
     }
 
     construct {
@@ -47,7 +43,6 @@ public class Widgets.ArticleCarousel : Gtk.FlowBox {
         var carousel_item = new ArticleCarouselItem (article);
         add (carousel_item);
         unselect_child (carousel_item);
-        carousel_item_map.set (article.url, index++);
         show_all ();
     }
 
