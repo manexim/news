@@ -30,6 +30,8 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
 
     public ArticleCarouselItem (Models.Article article) {
         Object (article: article);
+
+        get_style_context ().add_class ("entry");
     }
 
     construct {
@@ -51,7 +53,7 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
 
         source_label = new Gtk.Label ("elementary Blog");
         source_label.halign = Gtk.Align.START;
-        source_label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
+        source_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
 
         source = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         source.pack_start (source_icon, false, false, 0);
@@ -59,7 +61,7 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
 
         title = new Gtk.Label (article.title);
         title.halign = Gtk.Align.START;
-        title.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
+        title.get_style_context ().add_class ("h2");
 
         age = new Gtk.Label (Granite.DateTime.get_relative_datetime (article.published));
         age.halign = Gtk.Align.START;

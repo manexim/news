@@ -19,10 +19,9 @@
 * Authored by: Marius Meisenzahl <mariusmeisenzahl@gmail.com>
 */
 
-namespace Config {
-    public const string APP_ID = "com.github.manexim.news";
-    public const string APP_AUTHOR = "Manexim";
-    public const string APP_NAME = "News";
-    public const string APP_VERSION = "0.0.0";
-    public const string APP_STYLES = "com/github/manexim/news/styles/application.css";
+.h2 {
+    font-family: "Raleway";
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333333;
 }

@@ -22,6 +22,7 @@ sources = [
 executable(
     meson.project_name(),
     sources + ['Application.vala'],
+    asresources,
     dependencies: dependencies,
     install: true
 )

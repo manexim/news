@@ -1,5 +1,7 @@
 project('com.github.manexim.news', 'vala', 'c')
 
+gnome = import('gnome')
+
 gtk_plus_3_dep = dependency('gtk+-3.0')
 granite_dep = dependency('granite')
 soup_dep = dependency('libsoup-2.4')
@@ -16,7 +18,7 @@ dependencies = [
     gee_dep
 ]
 
-subdir('src')
 subdir('data')
+subdir('src')
 
 meson.add_install_script('meson/post_install.py')
