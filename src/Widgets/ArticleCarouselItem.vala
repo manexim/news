@@ -65,6 +65,10 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
 
         age = new Gtk.Label (Granite.DateTime.get_relative_datetime (article.published));
         age.halign = Gtk.Align.START;
+        age.tooltip_text = "%s %s".printf(
+            article.published.format (Granite.DateTime.get_default_date_format ()),
+            article.published.format (Granite.DateTime.get_default_time_format ())
+        );
 
         var grid = new Gtk.Grid ();
         grid.column_spacing = 12;
