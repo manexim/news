@@ -15,7 +15,13 @@
   <provides>
       <binary>com.github.manexim.news</binary>
   </provides>
-  ​<releases></releases>
+  <releases>
+    <release date="2019-11-03" version="0.1.0">
+      <description>
+        <p>Initial release</p>
+      </description>
+    </release>
+  </releases>
   <screenshots>
     <screenshot type="default">
       <caption></caption>
