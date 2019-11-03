@@ -17,6 +17,11 @@
   </a>
 </p>
 
+<p align="center">
+  <img src="data/screenshots/000.png">
+  <img src="data/screenshots/001.png">
+</p>
+
 ## Installation
 
 ### Dependencies
