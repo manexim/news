@@ -5,5 +5,5 @@ GenericName=News
 Comment=The best news sources, all in one place
 Exec=com.github.manexim.news
 Icon=com.github.manexim.news
-Categories=GNOME;GTK;Network;News;Feeds;
+Categories=GNOME;GTK;Network;News;
 X-GNOME-UsesNotifications=false
