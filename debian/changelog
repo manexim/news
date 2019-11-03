@@ -1,3 +1,13 @@
+com.github.manexim.news (0.1.1) bionic; urgency=medium
+
+[NEW]
+[IMPROVED]
+[FIXED]
+ * Remove unregistered desktop file category
+
+ -- Marius Meisenzahl <mariusmeisenzahl@gmail.com>  Sun, 03 Nov 2019 13:38:23 +0100
+
+
 com.github.manexim.news (0.1.0) bionic; urgency=medium
 
   * Initial release

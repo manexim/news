@@ -23,6 +23,6 @@ namespace Config {
     public const string APP_ID = "com.github.manexim.news";
     public const string APP_AUTHOR = "Manexim";
     public const string APP_NAME = "News";
-    public const string APP_VERSION = "0.1.0";
+    public const string APP_VERSION = "0.1.1";
     public const string APP_STYLES = "com/github/manexim/news/styles/application.css";
 }

@@ -16,6 +16,20 @@
       <binary>com.github.manexim.news</binary>
   </provides>
   <releases>
+    <release date="2019-11-03" version="0.1.1">
+      <description>
+        <p>New:</p>
+        <ul>
+        </ul>
+        <p>Improved:</p>
+        <ul>
+        </ul>
+        <p>Fixed:</p>
+        <ul>
+          <li>Remove unregistered desktop file category</li>
+        </ul>
+      </description>
+    </release>
     <release date="2019-11-03" version="0.1.0">
       <description>
         <p>Initial release</p>
