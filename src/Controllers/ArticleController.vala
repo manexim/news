@@ -47,7 +47,9 @@ public class Controllers.ArticleController : Object {
                     if (Utilities.URL.is_absolute (image)) {
                         model.image = new Widgets.Image.from_url (image);
                     } else {
-                        model.image = new Widgets.Image.from_url (Utilities.URL.join (Utilities.URL.base (model.url), image));
+                        model.image = new Widgets.Image.from_url (
+                            Utilities.URL.join (Utilities.URL.base (model.url), image)
+                        );
                     }
                 }
             } catch (RegexError e) {

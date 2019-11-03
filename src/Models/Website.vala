@@ -51,19 +51,19 @@ public class Models.Website : Object {
                 return "";
             }
 
-            Xml.XPath.Context context = new Xml.XPath.Context(doc);
+            Xml.XPath.Context context = new Xml.XPath.Context (doc);
             if (context == null) {
                 stderr.printf ("failed to create the xpath context\n");
             }
 
-            Xml.XPath.Object* obj = context.eval_expression("/html");
+            Xml.XPath.Object* obj = context.eval_expression ("/html");
             if (obj == null) {
                 stderr.printf ("failed to evaluate xpath\n");
             }
 
             Xml.Node* node = null;
-            if (obj->nodesetval != null && obj->nodesetval->item(0) != null) {
-                node = obj->nodesetval->item(0);
+            if (obj->nodesetval != null && obj->nodesetval->item (0) != null) {
+                node = obj->nodesetval->item (0);
             } else {
                 stderr.printf ("failed to find the expected node\n");
             }

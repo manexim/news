@@ -66,12 +66,12 @@ public class Controllers.FeedController : Object {
 
     private void parse_rss (Xml.Node* root) {
         // find channel element
-	    var channel = root->children;
-	    for (;channel->name != "channel"; channel = channel->next);
+        var channel = root->children;
+        for (;channel->name != "channel"; channel = channel->next);
 
-	    // loop through elements
-	    for (var child = channel->children; child != null; child = child->next) {
-	        switch (child->name) {
+        // loop through elements
+        for (var child = channel->children; child != null; child = child->next) {
+            switch (child->name) {
                 case "title":
                     model.title = child->get_content ().strip ();
                     break;
@@ -105,7 +105,9 @@ public class Controllers.FeedController : Object {
                                 article.content = childitem->get_content ().strip ();
                                 break;
                             case "pubDate":
-                                article.published = Utilities.DateTime.parse_rfc822 (childitem->get_content ().strip ());
+                                article.published = Utilities.DateTime.parse_rfc822 (
+                                    childitem->get_content ().strip ()
+                                );
                                 break;
                         }
                     }
@@ -114,7 +116,7 @@ public class Controllers.FeedController : Object {
 
                     model.add_article (article);
                     break;
-	        }
-	    }
+            }
+        }
     }
 }
