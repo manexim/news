@@ -1,6 +1,6 @@
 <div align="center">
   <span align="center"> <img width="80" height="80" class="center" src="data/icons/com.github.manexim.news.svg" alt="Icon"></span>
-  <h1 align="center">News</h1>
+  <h1 align="center">News Feed</h1>
   <h3 align="center">The best news sources, all in one place</h3>
   <p align="center">Designed for <a href="https://elementary.io">elementary OS</a></p>
 </div>
@@ -57,7 +57,7 @@ sudo ninja uninstall
 
 ## Contributing
 
-If you want to contribute to News and make it better, your help is very welcome.
+If you want to contribute to News Feed and make it better, your help is very welcome.
 
 ### How to make a clean pull request
 
