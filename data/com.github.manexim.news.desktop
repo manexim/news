@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=News
-GenericName=News
+Name=News Feed
+GenericName=News Feed
 Comment=The best news sources, all in one place
 Exec=com.github.manexim.news
 Icon=com.github.manexim.news
