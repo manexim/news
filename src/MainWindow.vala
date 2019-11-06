@@ -47,7 +47,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         headerbar.pack_start (return_button);
 
         set_titlebar (headerbar);
-        title = "News";
+        title = Config.APP_ID;
 
         stack = new Gtk.Stack ();
         add (stack);
@@ -55,8 +55,8 @@ public class MainWindow : Gtk.ApplicationWindow {
         var feed = new Controllers.FeedController (
             new Models.Feed ("https://blog.elementary.io/feed.xml")
         );
-        stack.add_named (feed.view, "News");
-        history.add ("News");
+        stack.add_named (feed.view, Config.APP_ID);
+        history.add (Config.APP_ID);
 
         delete_event.connect (() => {
             save_settings ();
@@ -98,7 +98,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             return_button.no_show_all = true;
             return_button.visible = false;
 
-            title = "News";
+            title = Config.APP_ID;
         }
     }
 
