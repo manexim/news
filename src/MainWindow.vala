@@ -98,7 +98,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             return_button.no_show_all = true;
             return_button.visible = false;
 
-            title = Config.APP_ID;
+            title = Config.APP_NAME;
         }
     }
 
