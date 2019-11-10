@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.manexim.news\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-10 15:34+0100\n"
+"POT-Creation-Date: 2019-11-10 16:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,4 +27,8 @@ msgstr ""
 
 #: src/Widgets/ArticleCarouselItem.vala:43
 msgid "elementary Blog"
+msgstr ""
+
+#: src/MainWindow.vala:52 src/MainWindow.vala:95 src/MainWindow.vala:96
+msgid "Sources"
 msgstr ""

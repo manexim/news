@@ -1,13 +1,13 @@
 # German translations for com.github.manexim.news package.
 # Copyright (C) 2019 THE com.github.manexim.news'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.manexim.news package.
-# Automatically generated, 2019.
+# Marius Meisenzahl (@meisenzahl), 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.manexim.news\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-10 15:34+0100\n"
+"POT-Creation-Date: 2019-11-10 16:18+0100\n"
 "PO-Revision-Date: 2019-11-10 15:32+0100\n"
 "Last-Translator: Marius Meisenzahl (@meisenzahl)\n"
 "Language-Team: none\n"
@@ -28,3 +28,7 @@ msgstr "Artikel werden geladen"
 #: src/Widgets/ArticleCarouselItem.vala:43
 msgid "elementary Blog"
 msgstr ""
+
+#: src/MainWindow.vala:52 src/MainWindow.vala:95 src/MainWindow.vala:96
+msgid "Sources"
+msgstr "Quellen"
