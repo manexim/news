@@ -21,21 +21,19 @@
 
 public class Controllers.ArticleController : Object {
     public Models.Article model { get; construct set; }
-    public Views.ArticleView view { get; construct set; }
 
     public ArticleController (Models.Article model) {
         Object (
-            model: model,
-            view: new Views.ArticleView (model)
+            model: model
         );
     }
 
     public void update () {
-        download_image ();
-        download_favicon ();
+        get_image_url ();
+        get_favicon_url ();
     }
 
-    private void download_image () {
+    private void get_image_url () {
         if (model.about != null) {
             try {
                 Regex regex = new Regex (".*<img.*src=\"([^\"]*)\"");
@@ -45,11 +43,9 @@ public class Controllers.ArticleController : Object {
                     var image = mi.fetch (1);
 
                     if (Utilities.URL.is_absolute (image)) {
-                        model.image = new Widgets.Image.from_url (image);
+                        model.image = image;
                     } else {
-                        model.image = new Widgets.Image.from_url (
-                            Utilities.URL.join (Utilities.URL.base (model.url), image)
-                        );
+                        model.image = Utilities.URL.join (Utilities.URL.base (model.url), image);
                     }
                 }
             } catch (RegexError e) {
@@ -58,7 +54,7 @@ public class Controllers.ArticleController : Object {
         }
     }
 
-    private void download_favicon () {
-        model.favicon = new Widgets.Image.from_url ("https://elementary.io/favicon.ico");
+    private void get_favicon_url () {
+        model.favicon = "https://elementary.io/favicon.ico";
     }
 }

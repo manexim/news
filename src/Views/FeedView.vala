@@ -27,9 +27,18 @@ public class Views.FeedView : Gtk.ScrolledWindow {
             model: model
         );
 
+        var stack = new Gtk.Stack ();
+        add (stack);
+
+        var loading_view = new Views.LoadingView (
+            _("Loading articles")
+        );
+
+        stack.add (loading_view);
+
         var grid = new Gtk.Grid ();
         grid.margin = 12;
-        add (grid);
+        stack.add (grid);
 
         var articles_carousel = new Widgets.ArticleCarousel ();
 
@@ -39,12 +48,6 @@ public class Views.FeedView : Gtk.ScrolledWindow {
         articles_grid.attach (articles_carousel, 0, 0, 1, 1);
 
         grid.attach (articles_grid, 0, 0, 1, 1);
-
-        for (uint i = 0; i < model.articles.length; i++) {
-            var article = model.articles.index (i);
-
-            articles_carousel.add_article (article);
-        }
 
         articles_carousel.on_article_activated.connect ((article) => {
             var article_view = new Views.ArticleView (article);
@@ -56,6 +59,11 @@ public class Views.FeedView : Gtk.ScrolledWindow {
         });
 
         model.added_article.connect ((article) => {
+            if (stack.visible_child == loading_view) {
+                stack.set_visible_child (grid);
+                stack.remove (loading_view);
+            }
+
             articles_carousel.add_article (article);
         });
     }

@@ -35,21 +35,45 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
     }
 
     construct {
-        if (article.image != null) {
-            icon = article.image;
-            icon.scale (320, 180);
-            icon.halign = Gtk.Align.CENTER;
-        } else {
-            icon = new Widgets.Image ();
-        }
+        icon = new Widgets.Image ();
+        source_icon = new Widgets.Image ();
 
-        if (article.favicon != null) {
-            source_icon = article.favicon;
-            source_icon.scale_height (18);
-            source_icon.halign = Gtk.Align.START;
-        } else {
-            source_icon = new Widgets.Image ();
-        }
+        load_images.begin ();
+        //  var cache = Services.ImageCache.new_cache ();
+
+        //  //  print ("article.image: %s\n", article.image);
+        //  //  if (article.image != null) {
+        //  //      icon = new Widgets.Image.from_url_async (article.image);
+        //  //      icon.scale (320, 180);
+        //  //      icon.halign = Gtk.Align.CENTER;
+        //  //  } else {
+        //  //      icon = new Widgets.Image ();
+        //  //  }
+
+        //  print ("article.favicon: %s\n", article.favicon);
+        //  if (article.favicon != null) {
+        //      string? path = null;
+
+        //      cache.fetch.begin (article.favicon, (obj, res) => {
+        //          int result = cache.fetch.end (res, out path);
+
+        //          if (result == 0) {
+        //              source_icon = new Widgets.Image ();
+        //              var file = File.new_for_path (path);
+        //              source_icon.set_from_file_async.begin (file, 18, 18, false, () => {
+        //                  source_icon.halign = Gtk.Align.START;
+        //              });
+        //          }
+        //      });
+
+        //      cache.maintain ();
+
+        //      //  source_icon = new Widgets.Image.from_url_async (article.favicon);
+        //      //  source_icon.scale_height (18);
+        //      //  source_icon.halign = Gtk.Align.START;
+        //  } else {
+        //      source_icon = new Widgets.Image ();
+        //  }
 
         source_label = new Gtk.Label (_("elementary Blog"));
         source_label.halign = Gtk.Align.START;
@@ -80,5 +104,43 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
         grid.attach (age, 0, 3, 1, 1);
 
         add (grid);
+    }
+
+    private async void load_images () {
+        var cache = Services.ImageCache.new_cache ();
+
+        if (article.image != null) {
+            string? path = null;
+
+            int result = yield cache.fetch (article.image, out path);
+            if (result == 0) {
+                var file = File.new_for_path (path);
+
+                try {
+                    yield icon.set_from_file_async (file, 320, 180, true);
+                    icon.halign = Gtk.Align.CENTER;
+                } catch (Error e) {
+                    error (e.message);
+                }
+            }
+        } else {
+            icon = new Widgets.Image ();
+        }
+
+        if (article.favicon != null) {
+            string? path = null;
+
+            int result = yield cache.fetch (article.favicon, out path);
+            if (result == 0) {
+                var file = File.new_for_path (path);
+
+                try {
+                    yield source_icon.set_from_file_async (file, 18, 18, false);
+                    source_icon.halign = Gtk.Align.START;
+                } catch (Error e) {
+                    error (e.message);
+                }
+            }
+        }
     }
 }

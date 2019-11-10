@@ -35,6 +35,69 @@ public class Widgets.Image : Granite.AsyncImage {
         }
     }
 
+    //  public Image.from_wtf_async (string file) {
+    //      File file = 1
+    //      set_from_file_async.begin (file);
+    //  }
+
+    //  public Image.from_file_async (
+    //      string file
+    //  ) {
+    //      set_from_file_async.begin (file);
+    //  }
+
+    public Image.from_url_async (string url) {
+        set_from_url_async.begin (url);
+    }
+
+    public async void set_from_url_async (string url, Cancellable? cancellable = null) throws Error {
+        try {
+            yield set_from_url_async_internal (url, cancellable);
+        } catch (Error e) {
+            throw e;
+        }
+    }
+
+    private async void set_from_url_async_internal (string url, Cancellable? cancellable = null) throws Error {
+        //  var session = new Soup.Session ();
+        //  var message = new Soup.Message ("GET", url);
+
+        //  session.send_message (message);
+
+        //  var stream = new MemoryInputStream.from_data (message.response_body.data);
+
+        //  try {
+        //      pixbuf = new Gdk.Pixbuf.from_stream (stream);
+        //  } catch (Error e) {
+        //      stderr.printf ("%s\n", e.message);
+        //  }
+
+        var session = new Soup.Session ();
+        var message = new Soup.Message ("GET", url);
+
+        //  session.queue_message (message, (s, m) => {
+        //      var stream = new MemoryInputStream.from_data (m.response_body.data);
+
+        //      try {
+        //          pixbuf = new Gdk.Pixbuf.from_stream (stream);
+        //      } catch (Error e) {
+        //          stderr.printf ("%s\n", e.message);
+        //      }
+        //  });
+
+        try {
+            var input = yield session.send_async (message, cancellable);
+
+            uint8 buffer[100];
+            size_t size = @input.read (buffer);
+            stdout.write (buffer, size);
+
+            pixbuf = new Gdk.Pixbuf.from_stream (input);
+        } catch (Error e) {
+            throw e;
+        }
+    }
+
     public void scale (int width, int height, bool keep_ratio = true) {
         if ((pixbuf.get_width () * pixbuf.get_height ()) > (width * height)) {
             if (!keep_ratio) {

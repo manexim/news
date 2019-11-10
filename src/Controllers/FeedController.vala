@@ -33,36 +33,40 @@ public class Controllers.FeedController : Object {
     }
 
     public void update () {
-        var session = new Soup.Session ();
-        var message = new Soup.Message ("GET", model.url);
+        new Thread<void*> (null, () => {
+            var session = new Soup.Session ();
+            var message = new Soup.Message ("GET", model.url);
 
-        session.send_message (message);
+            session.send_message (message);
 
-        string response = (string) message.response_body.data;
+            string response = (string) message.response_body.data;
 
-        var doc = Xml.Parser.parse_doc (response);
-        if (doc == null) {
-            stderr.printf ("failed to read the .xml file\n");
-            return;
-        }
+            var doc = Xml.Parser.parse_doc (response);
+            if (doc == null) {
+                stderr.printf ("failed to read the .xml file\n");
+                return null;
+            }
 
-        Xml.Node* root = doc->get_root_element ();
-        if (root == null) {
-            stderr.printf ("failed to read the root\n");
-            return;
-        }
+            Xml.Node* root = doc->get_root_element ();
+            if (root == null) {
+                stderr.printf ("failed to read the root\n");
+                return null;
+            }
 
-        switch (root->name) {
-            case "rss":
-                parse_rss (root);
-                break;
-            case "feed":
-                parse_atom (root);
-                break;
-            default:
-                stderr.printf ("not implemented\n");
-                break;
-        }
+            switch (root->name) {
+                case "rss":
+                    parse_rss (root);
+                    break;
+                case "feed":
+                    parse_atom (root);
+                    break;
+                default:
+                    stderr.printf ("not implemented\n");
+                    break;
+            }
+
+            return null;
+        });
     }
 
     private void parse_rss (Xml.Node* root) {
@@ -113,9 +117,10 @@ public class Controllers.FeedController : Object {
                         }
                     }
 
-                    new Controllers.ArticleController (article).update ();
+                    var article_controller = new Controllers.ArticleController (article);
+                    article_controller.update ();
 
-                    model.add_article (article);
+                    model.add_article (article_controller.model);
                     break;
             }
         }
@@ -172,9 +177,10 @@ public class Controllers.FeedController : Object {
                         }
                     }
 
-                    new Controllers.ArticleController (article).update ();
+                    var article_controller = new Controllers.ArticleController (article);
+                    article_controller.update ();
 
-                    model.add_article (article);
+                    model.add_article (article_controller.model);
                     break;
             }
         }
