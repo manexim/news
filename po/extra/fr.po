@@ -1,0 +1,79 @@
+# French translations for extra package.
+# Copyright (C) 2019 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Nathan Bonnemains (@NathanBnm), 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-10 12:34+0100\n"
+"PO-Revision-Date: 2019-11-10 12:34+0100\n"
+"Last-Translator: Nathan Bonnemains (@NathanBnm)\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: data/com.github.manexim.news.desktop.in:4
+#: data/com.github.manexim.news.desktop.in:5
+#: data/com.github.manexim.news.appdata.xml.in:7
+msgid "News Feed"
+msgstr "Fil d'actualité"
+
+#: data/com.github.manexim.news.desktop.in:6
+#: data/com.github.manexim.news.appdata.xml.in:8
+msgid "The best news sources, all in one place"
+msgstr "Les meilleures sources d'actualités, toutes au même endroit"
+
+#: data/com.github.manexim.news.desktop.in:8
+msgid "com.github.manexim.news"
+msgstr "com.github.manexim.news"
+
+#: data/com.github.manexim.news.appdata.xml.in:10
+msgid ""
+"Read the latest headlines and get coverage of current events. Read engaging "
+"stories on the topics that interest you."
+msgstr ""
+"Lisez les derniers titres et obtenez une couverture de l'actualité. Lisez des histoires "
+"captivantes sur les sujets qui vous intéressent."
+
+#: data/com.github.manexim.news.appdata.xml.in:21
+#: data/com.github.manexim.news.appdata.xml.in:35
+#: data/com.github.manexim.news.appdata.xml.in:49
+msgid "New:"
+msgstr "Nouveau :"
+
+#: data/com.github.manexim.news.appdata.xml.in:24
+#: data/com.github.manexim.news.appdata.xml.in:38
+#: data/com.github.manexim.news.appdata.xml.in:52
+msgid "Improved:"
+msgstr "Amélioré :"
+
+#: data/com.github.manexim.news.appdata.xml.in:27
+#: data/com.github.manexim.news.appdata.xml.in:41
+#: data/com.github.manexim.news.appdata.xml.in:55
+msgid "Fixed:"
+msgstr "Corrigé :"
+
+#: data/com.github.manexim.news.appdata.xml.in:29
+msgid "Updated the description"
+msgstr "Mise à jour de la description"
+
+#: data/com.github.manexim.news.appdata.xml.in:43
+msgid "Updated name as requested for AppCenter"
+msgstr "Mise à jour du nom de l'application comme demandé par le Centre d'Applications"
+
+#: data/com.github.manexim.news.appdata.xml.in:57
+msgid "Remove unregistered desktop file category"
+msgstr "Suppression des catégories de fichiers non enregistrées"
+
+#: data/com.github.manexim.news.appdata.xml.in:63
+msgid "Initial release"
+msgstr "Version initiale"
+
+#: data/com.github.manexim.news.appdata.xml.in:73
+msgid "Manexim"
+msgstr "Manexim"
