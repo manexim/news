@@ -31,7 +31,7 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Utilities.History history;
 
     private Controllers.FeedController feed;
-    private Views.LoadingView sources_view;
+    private Views.SourcesView sources_view;
 
     private int news_view_id;
     private int sources_view_id;
@@ -86,13 +86,18 @@ public class MainWindow : Gtk.ApplicationWindow {
         stack = new Gtk.Stack ();
         add (stack);
 
-        feed = new Controllers.FeedController (
-            new Models.Feed ("https://blog.elementary.io/feed.xml")
-        );
+        {
+            var model = new Models.Feed ("https://blog.elementary.io/feed.xml");
+            feed = new Controllers.FeedController (
+                model,
+                new Views.FeedView (model),
+                true
+            );
+        }
         stack.add_named (feed.view, Config.APP_NAME);
         history.add (Config.APP_NAME);
 
-        sources_view = new Views.LoadingView (_("Sources"));
+        sources_view = new Views.SourcesView ();
         stack.add_named (sources_view, _("Sources"));
 
         delete_event.connect (() => {
@@ -174,8 +179,13 @@ public class MainWindow : Gtk.ApplicationWindow {
 
     private void on_view_mode_changed () {
         if (view_mode.selected == news_view_id) {
-            stack.visible_child = feed.view;
+            if (!history.is_homepage) {
+                return_button.visible = true;
+            }
+
+            stack.visible_child_name = history.current;
         } else if (view_mode.selected == sources_view_id) {
+            return_button.visible = false;
             stack.visible_child = sources_view;
         }
     }

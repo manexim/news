@@ -21,18 +21,24 @@
 
 public class Controllers.FeedController : Object {
     public Models.Feed model { get; construct set; }
-    public Views.FeedView view { get; construct set; }
+    public Views.FeedView view { get; set; }
 
-    public FeedController (Models.Feed model) {
+    public signal void updated ();
+
+    public FeedController (
+        Models.Feed model,
+        Views.FeedView? view = null,
+        bool parse_articles = false
+    ) {
         Object (
             model: model,
-            view: new Views.FeedView (model)
+            view: view
         );
 
-        update ();
+        update (parse_articles);
     }
 
-    public void update () {
+    public void update (bool parse_articles = false) {
         new Thread<void*> (null, () => {
             var session = new Soup.Session ();
             var message = new Soup.Message ("GET", model.url);
@@ -55,21 +61,23 @@ public class Controllers.FeedController : Object {
 
             switch (root->name) {
                 case "rss":
-                    parse_rss (root);
+                    parse_rss (root, parse_articles);
                     break;
                 case "feed":
-                    parse_atom (root);
+                    parse_atom (root, parse_articles);
                     break;
                 default:
                     warning ("not implemented\n");
                     break;
             }
 
+            updated ();
+
             return null;
         });
     }
 
-    private void parse_rss (Xml.Node* root) {
+    private void parse_rss (Xml.Node* root, bool parse_articles = false) {
         // find channel element
         var channel = root->children;
         for (;channel->name != "channel"; channel = channel->next);
@@ -90,43 +98,46 @@ public class Controllers.FeedController : Object {
                     model.copyright = child->get_content ().strip ();
                     break;
                 case "item":
-                    var article = new Models.Article ();
-                    for (var childitem = child->children; childitem != null; childitem = childitem->next) {
-                        switch (childitem->name) {
-                            case "title":
-                                article.title = childitem->get_content ().replace ("&", "&amp;").strip ();
-                                break;
-                            case "link":
-                                article.url = childitem->get_content ().strip ();
-                                break;
-                            case "description":
-                                article.about = childitem->get_content ().strip ();
-                                if (article.about.length == 0) {
-                                    article.about = null;
-                                }
+                    if (parse_articles) {
+                        var article = new Models.Article ();
+                        for (var childitem = child->children; childitem != null; childitem = childitem->next) {
+                            switch (childitem->name) {
+                                case "title":
+                                    article.title = childitem->get_content ().replace ("&", "&amp;").strip ();
+                                    break;
+                                case "link":
+                                    article.url = childitem->get_content ().strip ();
+                                    break;
+                                case "description":
+                                    article.about = childitem->get_content ().strip ();
+                                    if (article.about.length == 0) {
+                                        article.about = null;
+                                    }
 
-                                break;
-                            case "encoded":
-                                article.content = childitem->get_content ().strip ();
-                                break;
-                            case "pubDate":
-                                article.published = Utilities.DateTime.parse_rfc822 (
-                                    childitem->get_content ().strip ()
-                                );
-                                break;
+                                    break;
+                                case "encoded":
+                                    article.content = childitem->get_content ().strip ();
+                                    break;
+                                case "pubDate":
+                                    article.published = Utilities.DateTime.parse_rfc822 (
+                                        childitem->get_content ().strip ()
+                                    );
+                                    break;
+                            }
                         }
+
+                        var article_controller = new Controllers.ArticleController (article);
+                        article_controller.update ();
+
+                        model.add_article (article_controller.model);
                     }
 
-                    var article_controller = new Controllers.ArticleController (article);
-                    article_controller.update ();
-
-                    model.add_article (article_controller.model);
                     break;
             }
         }
     }
 
-    private void parse_atom (Xml.Node* root) {
+    private void parse_atom (Xml.Node* root, bool parse_articles = false) {
         for (var child = root->children; child != null; child = child->next) {
             switch (child->name) {
                 case "title":
@@ -143,44 +154,47 @@ public class Controllers.FeedController : Object {
                     }
                     break;
                 case "entry":
-                    var article = new Models.Article ();
-                    for (var childitem = child->children; childitem != null; childitem = childitem->next) {
-                        switch (childitem->name) {
-                            case "title":
-                                article.title = childitem->get_content ();
-                                break;
-                            case "summary":
-                                article.about = childitem->get_content ();
-                                break;
-                            case "link":
-                                if (article.url == null) {
-                                    article.url = childitem->get_prop ("href");
-                                }
-                                break;
-                            case "published":
-                                article.published = new DateTime.from_iso8601 (
-                                    childitem->get_content (), new TimeZone.utc ()
-                                );
-                                break;
-                            case "updated":
-                                article.updated = new DateTime.from_iso8601 (
-                                    childitem->get_content (), new TimeZone.utc ()
-                                );
-
-                                if (article.published == null) {
+                    if (parse_articles) {
+                        var article = new Models.Article ();
+                        for (var childitem = child->children; childitem != null; childitem = childitem->next) {
+                            switch (childitem->name) {
+                                case "title":
+                                    article.title = childitem->get_content ();
+                                    break;
+                                case "summary":
+                                    article.about = childitem->get_content ();
+                                    break;
+                                case "link":
+                                    if (article.url == null) {
+                                        article.url = childitem->get_prop ("href");
+                                    }
+                                    break;
+                                case "published":
                                     article.published = new DateTime.from_iso8601 (
                                         childitem->get_content (), new TimeZone.utc ()
                                     );
-                                }
+                                    break;
+                                case "updated":
+                                    article.updated = new DateTime.from_iso8601 (
+                                        childitem->get_content (), new TimeZone.utc ()
+                                    );
 
-                                break;
+                                    if (article.published == null) {
+                                        article.published = new DateTime.from_iso8601 (
+                                            childitem->get_content (), new TimeZone.utc ()
+                                        );
+                                    }
+
+                                    break;
+                            }
                         }
+
+                        var article_controller = new Controllers.ArticleController (article);
+                        article_controller.update ();
+
+                        model.add_article (article_controller.model);
                     }
 
-                    var article_controller = new Controllers.ArticleController (article);
-                    article_controller.update ();
-
-                    model.add_article (article_controller.model);
                     break;
             }
         }
