@@ -46,26 +46,26 @@ public class Models.Website : Object {
 
             doc = Xml.Parser.read_memory (patched, patched.length, null, null, 1);
             if (doc == null) {
-                error ("failed to read the .xml file\n");
+                warning ("failed to read the .xml file\n");
 
                 return "";
             }
 
             Xml.XPath.Context context = new Xml.XPath.Context (doc);
             if (context == null) {
-                error ("failed to create the xpath context\n");
+                warning ("failed to create the xpath context\n");
             }
 
             Xml.XPath.Object* obj = context.eval_expression ("/html");
             if (obj == null) {
-                error ("failed to evaluate xpath\n");
+                warning ("failed to evaluate xpath\n");
             }
 
             Xml.Node* node = null;
             if (obj->nodesetval != null && obj->nodesetval->item (0) != null) {
                 node = obj->nodesetval->item (0);
             } else {
-                error ("failed to find the expected node\n");
+                warning ("failed to find the expected node\n");
             }
 
             result = node->get_content ();

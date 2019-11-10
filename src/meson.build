@@ -17,7 +17,6 @@ sources = files(
     'Views/LoadingView.vala',
     'Widgets/ArticleCarousel.vala',
     'Widgets/ArticleCarouselItem.vala',
-    'Widgets/Image.vala',
     'MainWindow.vala',
     'Application.vala'
 )
