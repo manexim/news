@@ -29,7 +29,6 @@ public class Controllers.FeedController : Object {
             view: new Views.FeedView (model)
         );
 
-
         update ();
     }
 
@@ -58,6 +57,8 @@ public class Controllers.FeedController : Object {
                 parse_rss (root);
                 break;
             case "feed":
+                parse_atom (root);
+                break;
             default:
                 stderr.printf ("not implemented\n");
                 break;
@@ -108,6 +109,65 @@ public class Controllers.FeedController : Object {
                                 article.published = Utilities.DateTime.parse_rfc822 (
                                     childitem->get_content ().strip ()
                                 );
+                                break;
+                        }
+                    }
+
+                    new Controllers.ArticleController (article).update ();
+
+                    model.add_article (article);
+                    break;
+            }
+        }
+    }
+
+    private void parse_atom (Xml.Node* root) {
+        for (var child = root->children; child != null; child = child->next) {
+            switch (child->name) {
+                case "title":
+                    model.title = child->get_content ();
+                    break;
+                case "subtitle":
+                    model.description = child->get_content ();
+                    break;
+                case "link":
+                    if (child->get_prop ("rel") == "self") {
+                        model.source = child->get_prop ("href");
+                    } else {
+                        model.url = child->get_prop ("href");
+                    }
+                    break;
+                case "entry":
+                    var article = new Models.Article ();
+                    for (var childitem = child->children; childitem != null; childitem = childitem->next) {
+                        switch (childitem->name) {
+                            case "title":
+                                article.title = childitem->get_content ();
+                                break;
+                            case "summary":
+                                article.about = childitem->get_content ();
+                                break;
+                            case "link":
+                                if (article.url == null) {
+                                    article.url = childitem->get_prop ("href");
+                                }
+                                break;
+                            case "published":
+                                article.published = new DateTime.from_iso8601 (
+                                    childitem->get_content (), new TimeZone.utc ()
+                                );
+                                break;
+                            case "updated":
+                                article.updated = new DateTime.from_iso8601 (
+                                    childitem->get_content (), new TimeZone.utc ()
+                                );
+
+                                if (article.published == null) {
+                                    article.published = new DateTime.from_iso8601 (
+                                        childitem->get_content (), new TimeZone.utc ()
+                                    );
+                                }
+
                                 break;
                         }
                     }

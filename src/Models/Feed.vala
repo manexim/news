@@ -25,6 +25,7 @@ public class Models.Feed : Object {
     public string title { get; set; }
     public string description { get; set; }
     public string link { get; set; }
+    public string source { get; set; }
     public string copyright { get; set; }
 
     public signal void added_article (Models.Article article);
