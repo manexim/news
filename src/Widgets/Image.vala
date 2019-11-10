@@ -31,7 +31,7 @@ public class Widgets.Image : Granite.AsyncImage {
         try {
             pixbuf = new Gdk.Pixbuf.from_stream (stream);
         } catch (Error e) {
-            stderr.printf ("%s\n", e.message);
+            error ("%s\n", e.message);
         }
     }
 
@@ -69,7 +69,7 @@ public class Widgets.Image : Granite.AsyncImage {
         //  try {
         //      pixbuf = new Gdk.Pixbuf.from_stream (stream);
         //  } catch (Error e) {
-        //      stderr.printf ("%s\n", e.message);
+        //      error ("%s\n", e.message);
         //  }
 
         var session = new Soup.Session ();
@@ -81,7 +81,7 @@ public class Widgets.Image : Granite.AsyncImage {
         //      try {
         //          pixbuf = new Gdk.Pixbuf.from_stream (stream);
         //      } catch (Error e) {
-        //          stderr.printf ("%s\n", e.message);
+        //          error ("%s\n", e.message);
         //      }
         //  });
 

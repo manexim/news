@@ -43,13 +43,13 @@ public class Controllers.FeedController : Object {
 
             var doc = Xml.Parser.parse_doc (response);
             if (doc == null) {
-                stderr.printf ("failed to read the .xml file\n");
+                error ("failed to read the .xml file\n");
                 return null;
             }
 
             Xml.Node* root = doc->get_root_element ();
             if (root == null) {
-                stderr.printf ("failed to read the root\n");
+                error ("failed to read the root\n");
                 return null;
             }
 
@@ -61,7 +61,7 @@ public class Controllers.FeedController : Object {
                     parse_atom (root);
                     break;
                 default:
-                    stderr.printf ("not implemented\n");
+                    error ("not implemented\n");
                     break;
             }
 

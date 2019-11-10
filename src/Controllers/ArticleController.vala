@@ -49,7 +49,7 @@ public class Controllers.ArticleController : Object {
                     }
                 }
             } catch (RegexError e) {
-                stderr.printf ("RegexError %s\n", e.message);
+                error ("RegexError %s\n", e.message);
             }
         }
     }

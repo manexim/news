@@ -29,7 +29,7 @@ namespace Utilities.URL {
                 return mi.fetch (1);
             }
         } catch (RegexError e) {
-            stderr.printf ("RegexError %s\n", e.message);
+            error ("RegexError %s\n", e.message);
         }
 
         return null;
@@ -43,7 +43,7 @@ namespace Utilities.URL {
                 return true;
             }
         } catch (RegexError e) {
-            stderr.printf ("RegexError %s\n", e.message);
+            error ("RegexError %s\n", e.message);
         }
 
         return false;
