@@ -47,7 +47,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         headerbar.pack_start (return_button);
 
         set_titlebar (headerbar);
-        title = Config.APP_ID;
+        title = Config.APP_NAME;
 
         stack = new Gtk.Stack ();
         add (stack);
@@ -55,8 +55,8 @@ public class MainWindow : Gtk.ApplicationWindow {
         var feed = new Controllers.FeedController (
             new Models.Feed ("https://blog.elementary.io/feed.xml")
         );
-        stack.add_named (feed.view, Config.APP_ID);
-        history.add (Config.APP_ID);
+        stack.add_named (feed.view, Config.APP_NAME);
+        history.add (Config.APP_NAME);
 
         delete_event.connect (() => {
             save_settings ();
