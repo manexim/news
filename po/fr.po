@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.manexim.news\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-10 12:34+0100\n"
+"POT-Creation-Date: 2019-11-10 15:34+0100\n"
 "PO-Revision-Date: 2019-11-10 12:34+0100\n"
 "Last-Translator: Nathan Bonnemains (@NathanBnm)\n"
 "Language-Team: none\n"
@@ -21,6 +21,10 @@ msgstr ""
 msgid "News Feed"
 msgstr "Fil d'actualité"
 
-#: src/Widgets/ArticleCarouselItem.vala:54
+#: src/Views/FeedView.vala:34
+msgid "Loading articles"
+msgstr ""
+
+#: src/Widgets/ArticleCarouselItem.vala:43
 msgid "elementary Blog"
 msgstr "Blog d'elementary"

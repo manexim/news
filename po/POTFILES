@@ -1,2 +1,3 @@
 src/Config/Constants.vala
+src/Views/FeedView.vala
 src/Widgets/ArticleCarouselItem.vala
