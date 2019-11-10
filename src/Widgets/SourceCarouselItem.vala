@@ -40,7 +40,13 @@ public class Widgets.SourceCarouselItem : Gtk.FlowBoxChild {
         source_label.halign = Gtk.Align.START;
         source_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
 
+        var source_switch = new Gtk.Switch ();
+        source_switch.active = source.subscribed;
+        source_switch.bind_property ("active", source, "subscribed");
+        source_switch.sensitive = false;
+
         source_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        source_box.pack_start (source_switch, false, false, 8);
         source_box.pack_start (source_icon, false, false, 0);
         source_box.pack_start (source_label, false, false, 8);
 

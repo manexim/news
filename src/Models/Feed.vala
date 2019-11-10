@@ -28,6 +28,7 @@ public class Models.Feed : Object {
     public string source { get; set; }
     public string copyright { get; set; }
     public string favicon { get; set; }
+    public bool subscribed { get; set; }
 
     public signal void added_article (Models.Article article);
 

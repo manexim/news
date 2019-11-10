@@ -51,6 +51,7 @@ public class Services.Sources : Object {
             {
                 var model = new Models.Feed ("https://blog.elementary.io/feed.xml");
                 model.favicon = "https://elementary.io/favicon.ico";
+                model.subscribed = true;
 
                 var controller = new Controllers.FeedController (model);
                 controller.updated.connect (() => {
