@@ -27,6 +27,7 @@ public class Models.Feed : Object {
     public string link { get; set; }
     public string source { get; set; }
     public string copyright { get; set; }
+    public string favicon { get; set; }
 
     public signal void added_article (Models.Article article);
 
