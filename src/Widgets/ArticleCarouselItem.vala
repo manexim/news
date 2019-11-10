@@ -51,7 +51,7 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
             source_icon = new Widgets.Image ();
         }
 
-        source_label = new Gtk.Label ("elementary Blog");
+        source_label = new Gtk.Label (_("elementary Blog"));
         source_label.halign = Gtk.Align.START;
         source_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
 
