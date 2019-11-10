@@ -1,5 +1,5 @@
 <div align="center">
-  <span align="center"> <img width="80" height="80" class="center" src="data/icons/com.github.manexim.news.svg" alt="Icon"></span>
+  <span align="center"> <img width="80" height="80" class="center" src="data/icons/128/com.github.manexim.news.svg" alt="Icon"></span>
   <h1 align="center">News Feed</h1>
   <h3 align="center">The best news sources, all in one place</h3>
   <p align="center">Designed for <a href="https://elementary.io">elementary OS</a></p>
