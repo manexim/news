@@ -1,4 +1,4 @@
-sources = [
+sources = files(
     'Config/Constants.vala',
     'Controllers/ArticleController.vala',
     'Controllers/FeedController.vala',
@@ -16,12 +16,13 @@ sources = [
     'Widgets/ArticleCarousel.vala',
     'Widgets/ArticleCarouselItem.vala',
     'Widgets/Image.vala',
-    'MainWindow.vala'
-]
+    'MainWindow.vala',
+    'Application.vala'
+)
 
 executable(
     meson.project_name(),
-    sources + ['Application.vala'],
+    sources,
     asresources,
     dependencies: dependencies,
     install: true

@@ -1,24 +1,24 @@
-project('com.github.manexim.news', 'vala', 'c')
+project('com.github.manexim.news', 'vala', 'c', version: '0.1.3')
 
 gnome = import('gnome')
+i18n = import('i18n')
 
-gtk_plus_3_dep = dependency('gtk+-3.0')
-granite_dep = dependency('granite')
-soup_dep = dependency('libsoup-2.4')
-xml_dep = dependency('libxml-2.0')
-webkit2gtk_4_dep = dependency('webkit2gtk-4.0')
-gee_dep = dependency('gee-0.8')
+add_project_arguments(
+    '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
+    language: 'c'
+)
 
 dependencies = [
-    gtk_plus_3_dep,
-    granite_dep,
-    soup_dep,
-    xml_dep,
-    webkit2gtk_4_dep,
-    gee_dep
+    dependency('gtk+-3.0'),
+    dependency('granite'),
+    dependency('libsoup-2.4'),
+    dependency('libxml-2.0'),
+    dependency('webkit2gtk-4.0'),
+    dependency('gee-0.8')
 ]
 
 subdir('data')
+subdir('po')
 subdir('src')
 
 meson.add_install_script('meson/post_install.py')

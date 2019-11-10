@@ -1,0 +1,77 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-10 11:36+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/com.github.manexim.news.desktop.in:4
+#: data/com.github.manexim.news.desktop.in:5
+#: data/com.github.manexim.news.appdata.xml.in:7
+msgid "News Feed"
+msgstr ""
+
+#: data/com.github.manexim.news.desktop.in:6
+#: data/com.github.manexim.news.appdata.xml.in:8
+msgid "The best news sources, all in one place"
+msgstr ""
+
+#: data/com.github.manexim.news.desktop.in:8
+msgid "com.github.manexim.news"
+msgstr ""
+
+#: data/com.github.manexim.news.appdata.xml.in:10
+msgid ""
+"Read the latest headlines and get coverage of current events. Read engaging "
+"stories on the topics that interest you."
+msgstr ""
+
+#: data/com.github.manexim.news.appdata.xml.in:21
+#: data/com.github.manexim.news.appdata.xml.in:35
+#: data/com.github.manexim.news.appdata.xml.in:49
+msgid "New:"
+msgstr ""
+
+#: data/com.github.manexim.news.appdata.xml.in:24
+#: data/com.github.manexim.news.appdata.xml.in:38
+#: data/com.github.manexim.news.appdata.xml.in:52
+msgid "Improved:"
+msgstr ""
+
+#: data/com.github.manexim.news.appdata.xml.in:27
+#: data/com.github.manexim.news.appdata.xml.in:41
+#: data/com.github.manexim.news.appdata.xml.in:55
+msgid "Fixed:"
+msgstr ""
+
+#: data/com.github.manexim.news.appdata.xml.in:29
+msgid "Updated the description"
+msgstr ""
+
+#: data/com.github.manexim.news.appdata.xml.in:43
+msgid "Updated name as requested for AppCenter"
+msgstr ""
+
+#: data/com.github.manexim.news.appdata.xml.in:57
+msgid "Remove unregistered desktop file category"
+msgstr ""
+
+#: data/com.github.manexim.news.appdata.xml.in:63
+msgid "Initial release"
+msgstr ""
+
+#: data/com.github.manexim.news.appdata.xml.in:73
+msgid "Manexim"
+msgstr ""
