@@ -1,4 +1,4 @@
-project('com.github.manexim.news', 'vala', 'c', version: '0.1.3')
+project('com.github.manexim.news', 'vala', 'c')
 
 gnome = import('gnome')
 i18n = import('i18n')
