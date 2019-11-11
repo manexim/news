@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-10 16:24+0100\n"
+"POT-Creation-Date: 2019-11-11 08:14+0100\n"
 "PO-Revision-Date: 2019-11-10 12:34+0100\n"
 "Last-Translator: Nathan Bonnemains (@NathanBnm)\n"
 "Language-Team: none\n"
@@ -50,11 +50,11 @@ msgstr "Nouveau :"
 
 #: data/com.github.manexim.news.appdata.xml.in:23
 msgid "Add cache for images"
-msgstr ""
+msgstr "Ajout d'un cache des images"
 
 #: data/com.github.manexim.news.appdata.xml.in:24
 msgid "Show message while loading articles"
-msgstr ""
+msgstr "Affichage d'un message de chargement des articles"
 
 #: data/com.github.manexim.news.appdata.xml.in:26
 #: data/com.github.manexim.news.appdata.xml.in:44
@@ -74,19 +74,19 @@ msgstr "Corrigé :"
 
 #: data/com.github.manexim.news.appdata.xml.in:32
 msgid "Translations:"
-msgstr ""
+msgstr "Traductions :"
 
 #: data/com.github.manexim.news.appdata.xml.in:34
 msgid "French (by NathanBnm)"
-msgstr ""
+msgstr "Français (par NathanBnm)"
 
 #: data/com.github.manexim.news.appdata.xml.in:35
 msgid "German (by meisenzahl)"
-msgstr ""
+msgstr "Allemand (par meisenzahl)"
 
 #: data/com.github.manexim.news.appdata.xml.in:49
 msgid "Set title in HeaderBar"
-msgstr ""
+msgstr "Ajout du titre dans l'entête"
 
 #: data/com.github.manexim.news.appdata.xml.in:63
 msgid "Updated the description"
