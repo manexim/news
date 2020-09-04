@@ -49,7 +49,7 @@ These dependencies must be present before building:
 ```
 git clone https://github.com/manexim/news.git && cd news
 meson build && cd build
-meson configure -Dprefix=/usr
+meson configure --prefix=/usr
 ninja
 sudo ninja install
 com.github.manexim.news
