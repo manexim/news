@@ -1,0 +1,111 @@
+# Spanish translations for extra package.
+# Copyright (C) 2019 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Mario Rodrigo (@capitantrueno), 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-11 08:14+0100\n"
+"PO-Revision-Date: 2019-11-10 12:34+0100\n"
+"Last-Translator: Mario Rodrigo (@capitantrueno)\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: data/com.github.manexim.news.desktop.in:4
+#: data/com.github.manexim.news.desktop.in:5
+#: data/com.github.manexim.news.appdata.xml.in:7
+msgid "News Feed"
+msgstr "Hilo de noticias"
+
+#: data/com.github.manexim.news.desktop.in:6
+#: data/com.github.manexim.news.appdata.xml.in:8
+msgid "The best news sources, all in one place"
+msgstr "Las mejores fuentes de noticias, todas en un sólo lugar"
+
+#: data/com.github.manexim.news.desktop.in:8
+msgid "com.github.manexim.news"
+msgstr "com.github.manexim.news"
+
+#: data/com.github.manexim.news.appdata.xml.in:10
+msgid ""
+"Read the latest headlines and get coverage of current events. Read engaging "
+"stories on the topics that interest you."
+msgstr ""
+"Lee los últimos titulares y sigue la cobertura de la actualidad. Lee historias "
+"cautivadoras sobre los temas que te interesan."
+
+#: data/com.github.manexim.news.appdata.xml.in:21
+#: data/com.github.manexim.news.appdata.xml.in:41
+#: data/com.github.manexim.news.appdata.xml.in:55
+#: data/com.github.manexim.news.appdata.xml.in:69
+#: data/com.github.manexim.news.appdata.xml.in:83
+msgid "New:"
+msgstr "Nuevo:"
+
+#: data/com.github.manexim.news.appdata.xml.in:23
+msgid "Add cache for images"
+msgstr "Añadir caché para imágenes"
+
+#: data/com.github.manexim.news.appdata.xml.in:24
+msgid "Show message while loading articles"
+msgstr "Mostrar un mensaje durante la carga de artículos"
+
+#: data/com.github.manexim.news.appdata.xml.in:26
+#: data/com.github.manexim.news.appdata.xml.in:44
+#: data/com.github.manexim.news.appdata.xml.in:58
+#: data/com.github.manexim.news.appdata.xml.in:72
+#: data/com.github.manexim.news.appdata.xml.in:86
+msgid "Improved:"
+msgstr "Mejorado:"
+
+#: data/com.github.manexim.news.appdata.xml.in:29
+#: data/com.github.manexim.news.appdata.xml.in:47
+#: data/com.github.manexim.news.appdata.xml.in:61
+#: data/com.github.manexim.news.appdata.xml.in:75
+#: data/com.github.manexim.news.appdata.xml.in:89
+msgid "Fixed:"
+msgstr "Corregido:"
+
+#: data/com.github.manexim.news.appdata.xml.in:32
+msgid "Translations:"
+msgstr "Traducciones:"
+
+#: data/com.github.manexim.news.appdata.xml.in:34
+msgid "French (by NathanBnm)"
+msgstr "Francés (por NathanBnm)"
+
+#: data/com.github.manexim.news.appdata.xml.in:35
+msgid "German (by meisenzahl)"
+msgstr "Alemán (por meisenzahl)"
+
+#: data/com.github.manexim.news.appdata.xml.in:49
+msgid "Set title in HeaderBar"
+msgstr "Ajustar el título en la barra de título"
+
+#: data/com.github.manexim.news.appdata.xml.in:63
+msgid "Updated the description"
+msgstr "Actualizada la descripción"
+
+#: data/com.github.manexim.news.appdata.xml.in:77
+msgid "Updated name as requested for AppCenter"
+msgstr ""
+"Actualizado el nombre según lo requerido por el Centro "
+"de Aplicaciones"
+
+#: data/com.github.manexim.news.appdata.xml.in:91
+msgid "Remove unregistered desktop file category"
+msgstr "Eliminada la categoría no registrada en el fichero lanzador"
+
+#: data/com.github.manexim.news.appdata.xml.in:97
+msgid "Initial release"
+msgstr "Versión inicial"
+
+#: data/com.github.manexim.news.appdata.xml.in:107
+msgid "Manexim"
+msgstr "Manexim"
