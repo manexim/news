@@ -86,7 +86,7 @@ public class MainWindow : Hdy.Window {
             hexpand = true,
             vexpand = true
         };
-        
+
         var main_layout = new Gtk.Grid ();
         main_layout.attach (headerbar, 0, 0);
         main_layout.attach (stack, 0, 1);
