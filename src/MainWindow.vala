@@ -78,7 +78,7 @@ public class MainWindow : Hdy.Window {
         return_button = new Gtk.Button ();
         return_button.no_show_all = true;
         return_button.valign = Gtk.Align.CENTER;
-        return_button.get_style_context ().add_class ("back-button");
+        return_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
         return_button.clicked.connect (go_back);
         headerbar.pack_start (return_button);
 
