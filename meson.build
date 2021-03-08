@@ -14,7 +14,8 @@ dependencies = [
     dependency('libsoup-2.4'),
     dependency('libxml-2.0'),
     dependency('webkit2gtk-4.0'),
-    dependency('gee-0.8')
+    dependency('gee-0.8'),
+    dependency('libhandy-1', version: '>=1.0.0'),
 ]
 
 subdir('data')

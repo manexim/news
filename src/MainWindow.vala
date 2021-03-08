@@ -19,7 +19,7 @@
 * Authored by: Marius Meisenzahl <mariusmeisenzahl@gmail.com>
 */
 
-public class MainWindow : Gtk.ApplicationWindow {
+public class MainWindow : Hdy.Window {
     private static MainWindow? instance;
     private Services.Settings settings;
     private Gtk.Label news_header;
@@ -69,10 +69,11 @@ public class MainWindow : Gtk.ApplicationWindow {
         custom_title_stack.add (news_header);
         custom_title_stack.set_visible_child (view_mode_revealer);
 
-        var headerbar = new Gtk.HeaderBar ();
-        headerbar.get_style_context ().add_class ("default-decoration");
+        var headerbar = new Hdy.HeaderBar () {
+            decoration_layout = "close:",
+            show_close_button = true
+        };
         headerbar.set_custom_title (custom_title_stack);
-        headerbar.show_close_button = true;
 
         return_button = new Gtk.Button ();
         return_button.no_show_all = true;
@@ -81,10 +82,19 @@ public class MainWindow : Gtk.ApplicationWindow {
         return_button.clicked.connect (go_back);
         headerbar.pack_start (return_button);
 
-        set_titlebar (headerbar);
+        stack = new Gtk.Stack () {
+            hexpand = true,
+            vexpand = true
+        };
+        
+        var main_layout = new Gtk.Grid ();
+        main_layout.attach (headerbar, 0, 0);
+        main_layout.attach (stack, 0, 1);
 
-        stack = new Gtk.Stack ();
-        add (stack);
+        var window_handle = new Hdy.WindowHandle ();
+        window_handle.add (main_layout);
+
+        add (window_handle);
 
         {
             var model = new Models.Feed ("https://blog.elementary.io/feed.xml");
@@ -107,6 +117,10 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
 
         view_mode.notify["selected"].connect (on_view_mode_changed);
+    }
+
+    construct {
+        Hdy.init ();
     }
 
     public static MainWindow get_default () {
