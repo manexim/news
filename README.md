@@ -12,8 +12,8 @@
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.org/manexim/news">
-    <img src="https://img.shields.io/travis/manexim/news.svg">
+  <a href="https://github.com/manexim/news/actions/workflows/main.yml">
+    <img src="https://github.com/manexim/news/workflows/CI/badge.svg">
   </a>
   <a href="https://github.com/manexim/news/releases/">
     <img src="https://img.shields.io/github/release/manexim/news.svg">
