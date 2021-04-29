@@ -50,7 +50,7 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
 
         title = new Gtk.Label (article.title);
         title.halign = Gtk.Align.START;
-        title.get_style_context ().add_class ("h2");
+        title.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
 
         age = new Gtk.Label (Granite.DateTime.get_relative_datetime (article.published));
         age.halign = Gtk.Align.START;
