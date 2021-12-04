@@ -225,6 +225,9 @@ public class FeedMiddleware : Flux.Middleware {
             regex = new Regex ("<.*?>");
             s = regex.replace (s, s.length, 0, " ");
 
+            regex = new Regex ("\\s\\s+");
+            s = regex.replace (s, s.length, 0, " ");
+
             return s.strip ();
         } catch (RegexError e) {
             warning ("RegexError %s\n", e.message);
