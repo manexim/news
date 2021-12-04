@@ -4,6 +4,18 @@
  */
 
 public class Store : Flux.Store {
+    private static Store instance;
+
+    public static Store get_default () {
+        if (instance == null) {
+            instance = new Store ();
+        }
+
+        return instance;
+    }
+
+    private Store () {}
+
     public Gee.List<Models.Feed> feeds;
     public Gee.List<Models.Article> articles;
 
