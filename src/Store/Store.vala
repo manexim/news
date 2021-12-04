@@ -18,6 +18,12 @@ public class Store : Flux.Store {
     private void process_add_feed (Flux.Action action) {
         var payload = (Payload.AddFeed) action.payload;
 
+        foreach (var feed in feeds) {
+            if (feed.url == payload.url) {
+                return;
+            }
+        }
+
         var feed = new Models.Feed (payload.url) {
             title = payload.title,
             description = payload.description,
