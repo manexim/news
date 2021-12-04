@@ -22,19 +22,11 @@
 public class MainWindow : Hdy.Window {
     private static MainWindow? instance;
     private Services.Settings settings;
-    private Gtk.Label news_header;
-    private Gtk.Stack custom_title_stack;
-    private Granite.Widgets.ModeButton view_mode;
-    private Gtk.Revealer view_mode_revealer;
     private Gtk.Stack stack;
     private Gtk.Button return_button;
     private Utilities.History history;
 
     private Controllers.FeedController feed;
-    private Views.SourcesView sources_view;
-
-    private int news_view_id;
-    private int sources_view_id;
 
     public MainWindow (Gtk.Application application) {
         instance = this;
@@ -45,35 +37,11 @@ public class MainWindow : Hdy.Window {
         settings = Services.Settings.get_default ();
         load_settings ();
 
-        view_mode = new Granite.Widgets.ModeButton ();
-        view_mode.margin_end = view_mode.margin_start = 12;
-        view_mode.margin_bottom = view_mode.margin_top = 7;
-        news_view_id = view_mode.append_text (Config.APP_NAME);
-        sources_view_id = view_mode.append_text (_("Sources"));
-
-        view_mode.selected = news_view_id;
-
-        var view_mode_overlay = new Gtk.Overlay ();
-        view_mode_overlay.add (view_mode);
-
-        view_mode_revealer = new Gtk.Revealer ();
-        view_mode_revealer.reveal_child = true;
-        view_mode_revealer.transition_type = Gtk.RevealerTransitionType.CROSSFADE;
-        view_mode_revealer.add (view_mode_overlay);
-
-        news_header = new Gtk.Label (null);
-        news_header.get_style_context ().add_class (Gtk.STYLE_CLASS_TITLE);
-
-        custom_title_stack = new Gtk.Stack ();
-        custom_title_stack.add (view_mode_revealer);
-        custom_title_stack.add (news_header);
-        custom_title_stack.set_visible_child (view_mode_revealer);
-
         var headerbar = new Hdy.HeaderBar () {
             decoration_layout = "close:",
-            show_close_button = true
+            show_close_button = true,
+            title = Config.APP_NAME
         };
-        headerbar.set_custom_title (custom_title_stack);
 
         return_button = new Gtk.Button ();
         return_button.no_show_all = true;
@@ -98,6 +66,7 @@ public class MainWindow : Hdy.Window {
 
         {
             var model = new Models.Feed ("https://blog.elementary.io/feed.xml");
+            //  var model = new Models.Feed ("https://www.theverge.com/rss/index.xml");
             feed = new Controllers.FeedController (
                 model,
                 new Views.FeedView (model),
@@ -107,16 +76,11 @@ public class MainWindow : Hdy.Window {
         stack.add_named (feed.view, Config.APP_NAME);
         history.add (Config.APP_NAME);
 
-        sources_view = new Views.SourcesView ();
-        stack.add_named (sources_view, _("Sources"));
-
         delete_event.connect (() => {
             save_settings ();
 
             return false;
         });
-
-        view_mode.notify["selected"].connect (on_view_mode_changed);
     }
 
     construct {
@@ -188,19 +152,6 @@ public class MainWindow : Hdy.Window {
             get_size (out width, out height);
             settings.window_width = width;
             settings.window_height = height;
-        }
-    }
-
-    private void on_view_mode_changed () {
-        if (view_mode.selected == news_view_id) {
-            if (!history.is_homepage) {
-                return_button.visible = true;
-            }
-
-            stack.visible_child_name = history.current;
-        } else if (view_mode.selected == sources_view_id) {
-            return_button.visible = false;
-            stack.visible_child = sources_view;
         }
     }
 }
