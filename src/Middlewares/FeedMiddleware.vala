@@ -113,6 +113,7 @@ public class FeedMiddleware : Flux.Middleware {
                     var article = new Payload.AddArticle () {
                         feed = url
                     };
+
                     for (var childitem = child->children; childitem != null; childitem = childitem->next) {
                         switch (childitem->name) {
                             case "title":
@@ -153,6 +154,7 @@ public class FeedMiddleware : Flux.Middleware {
         Payload.AddFeed feed = new Payload.AddFeed () {
             url = url
         };
+        var articles = new Gee.ArrayList<Payload.AddArticle> ();
 
         for (var child = root->children; child != null; child = child->next) {
             var content = child->get_content ().strip ();
@@ -180,10 +182,54 @@ public class FeedMiddleware : Flux.Middleware {
                         feed.website = child->get_prop ("href").strip ();
                     }
                     break;
+                case "entry":
+                    var article = new Payload.AddArticle () {
+                        feed = url
+                    };
+
+                    for (var childitem = child->children; childitem != null; childitem = childitem->next) {
+                        switch (childitem->name) {
+                            case "title":
+                                article.title = childitem->get_content ().replace ("&", "&amp;").strip ();
+                                break;
+                            case "content":
+                                content = childitem->get_content ().strip ();
+                                if (content.length > 0) {
+                                    article.summary = get_content_text (content).substring (0, 200);
+                                    article.header_image = get_header_image_url (url, content);
+                                }
+                                break;
+                            case "link":
+                                if (article.url == null) {
+                                    article.url = childitem->get_prop ("href");
+                                }
+                                break;
+                            case "published":
+                                article.published = new DateTime.from_iso8601 (
+                                    childitem->get_content (), new TimeZone.utc ()
+                                );
+                                break;
+                            case "updated":
+                                if (article.published == null) {
+                                    article.published = new DateTime.from_iso8601 (
+                                        childitem->get_content (), new TimeZone.utc ()
+                                    );
+                                }
+
+                                break;
+                        }
+                    }
+
+                    articles.add (article);
+
+                    break;
             }
         }
 
         on_add_feed_response (feed);
+        foreach (var article in articles) {
+            on_add_article_response (article);
+        }
     }
 
     private string get_icon (string url) {
