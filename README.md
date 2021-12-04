@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/manexim/news/actions/workflows/main.yml">
+  <a href="https://github.com/manexim/news/actions/workflows/ci.yml">
     <img src="https://github.com/manexim/news/workflows/CI/badge.svg">
   </a>
   <a href="https://github.com/manexim/news/releases/">
