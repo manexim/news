@@ -5,4 +5,5 @@
 
 namespace ActionType {
     const string ADD_FEED = "ADD_FEED";
+    const string ADD_FEED_REQUEST = "ADD_FEED_REQUEST";
 }

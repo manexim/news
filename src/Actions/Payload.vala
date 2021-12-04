@@ -4,7 +4,15 @@
  */
 
 namespace Payload {
-    public class Feed : Flux.Payload {
-        public string url { get; construct set; }
+    public class AddFeedRequest : Flux.Payload {
+        public string url { get; set; }
+    }
+
+    public class AddFeed : Flux.Payload {
+        public string url { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
+        public string website { get; set; }
+        public string icon { get; set; }
     }
 }

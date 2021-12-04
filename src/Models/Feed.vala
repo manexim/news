@@ -13,6 +13,7 @@ public class Models.Feed : Object {
     public string copyright { get; set; }
     public string favicon { get; set; }
     public bool subscribed { get; set; }
+    public string icon { get; set; }
 
     public signal void added_article (Models.Article article);
 
