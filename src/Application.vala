@@ -35,9 +35,6 @@ public class Application : Granite.Application {
         // Register Stores
         Flux.Dispatcher.get_instance ().register_store (Store.get_default ());
 
-        Actions.add_feed_request ("https://blog.elementary.io/feed.xml");
-        Actions.add_feed_request ("https://www.theverge.com/rss/index.xml");
-
         window = new MainWindow (this);
 
         window.show_all ();
@@ -47,6 +44,9 @@ public class Application : Granite.Application {
         Gtk.StyleContext.add_provider_for_screen (
             Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         );
+
+        Actions.add_feed_request ("https://blog.elementary.io/feed.xml");
+        Actions.add_feed_request ("https://www.theverge.com/rss/index.xml");
     }
 
     public static int main (string[] args) {

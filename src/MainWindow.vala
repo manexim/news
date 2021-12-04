@@ -10,8 +10,6 @@ public class MainWindow : Hdy.Window {
     private Gtk.Button return_button;
     private Utilities.History history;
 
-    private Controllers.FeedController feed;
-
     public MainWindow (Gtk.Application application) {
         instance = this;
         this.application = application;
@@ -48,17 +46,7 @@ public class MainWindow : Hdy.Window {
 
         add (window_handle);
 
-        {
-            //  var model = new Models.Feed ("https://blog.elementary.io/feed.xml");
-            //  var model = new Models.Feed ("https://www.theverge.com/rss/index.xml");
-            var model = new Models.Feed ("https://blog.elementary.io/feed.xml");
-            feed = new Controllers.FeedController (
-                model,
-                new Views.FeedView (),
-                true
-            );
-        }
-        stack.add_named (feed.view, Config.APP_NAME);
+        stack.add_named (new Views.FeedView (), Config.APP_NAME);
         history.add (Config.APP_NAME);
 
         delete_event.connect (() => {
