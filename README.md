@@ -40,6 +40,7 @@ These dependencies must be present before building:
 -   `libgtk-3-dev`
 -   `libgranite-dev`
 -   `libhandy-1-dev (>=1.0.0)`
+-   `libjson-glib-dev`
 -   `libsoup2.4-dev`
 -   `libxml2-dev`
 -   `libwebkit2gtk-4.0-dev`

@@ -1,8 +1,12 @@
 sources = files(
+    'Actions/Actions.vala',
+    'Actions/ActionType.vala',
+    'Actions/Payload.vala',
     'Config/Constants.vala',
     'Controllers/ArticleController.vala',
     'Controllers/FeedController.vala',
     'Controllers/WebsiteController.vala',
+    'Middlewares/LoggingMiddleware.vala',
     'Models/Article.vala',
     'Models/Feed.vala',
     'Models/Website.vala',
