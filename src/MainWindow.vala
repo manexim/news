@@ -49,11 +49,12 @@ public class MainWindow : Hdy.Window {
         add (window_handle);
 
         {
-            var model = new Models.Feed ("https://blog.elementary.io/feed.xml");
+            //  var model = new Models.Feed ("https://blog.elementary.io/feed.xml");
             //  var model = new Models.Feed ("https://www.theverge.com/rss/index.xml");
+            var model = new Models.Feed ("https://blog.elementary.io/feed.xml");
             feed = new Controllers.FeedController (
                 model,
-                new Views.FeedView (model),
+                new Views.FeedView (),
                 true
             );
         }

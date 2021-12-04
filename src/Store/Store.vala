@@ -19,10 +19,16 @@ public class Store : Flux.Store {
     public Gee.List<Models.Feed> feeds;
     public Gee.List<Models.Article> articles;
 
+    public signal void on_add_feed (Models.Feed feed);
+    public signal void on_add_article (Models.Article article);
+
     public override void process (Flux.Action action) {
         switch (action.action_type) {
             case ActionType.ADD_FEED:
                 process_add_feed (action);
+                break;
+            case ActionType.ADD_ARTICLE:
+                process_add_article (action);
                 break;
         }
     }
@@ -44,6 +50,28 @@ public class Store : Flux.Store {
         };
 
         feeds.add (feed);
+        on_add_feed (feed);
+    }
+
+    private void process_add_article (Flux.Action action) {
+        var payload = (Payload.AddArticle) action.payload;
+
+        foreach (var article in articles) {
+            if (article.url == payload.url) {
+                return;
+            }
+        }
+
+        var article = new Models.Article () {
+            url = payload.url,
+            title = payload.title,
+            about = payload.summary,
+            image = payload.header_image,
+            published = payload.published
+        };
+
+        articles.add (article);
+        on_add_article (article);
     }
 
     construct {
