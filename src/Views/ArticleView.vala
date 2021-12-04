@@ -6,7 +6,6 @@
 public class Views.ArticleView : WebKit.WebView {
     public ArticleView (Models.Article article) {
         var settings = get_settings ();
-        settings.enable_plugins = false;
         settings.enable_javascript = false;
 
         load_uri (article.url);
