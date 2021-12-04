@@ -12,8 +12,8 @@
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.org/manexim/news">
-    <img src="https://img.shields.io/travis/manexim/news.svg">
+  <a href="https://github.com/manexim/news/actions/workflows/ci.yml">
+    <img src="https://github.com/manexim/news/workflows/CI/badge.svg">
   </a>
   <a href="https://github.com/manexim/news/releases/">
     <img src="https://img.shields.io/github/release/manexim/news.svg">
@@ -39,6 +39,7 @@ These dependencies must be present before building:
 -   `valac (>=0.40)`
 -   `libgtk-3-dev`
 -   `libgranite-dev`
+-   `libhandy-1-dev (>=1.0.0)`
 -   `libsoup2.4-dev`
 -   `libxml2-dev`
 -   `libwebkit2gtk-4.0-dev`
