@@ -22,4 +22,19 @@ namespace Actions {
         var action = new Flux.Action (type, payload);
         Flux.Dispatcher.get_instance ().dispatch (action);
     }
+
+    void add_article (string feed, string url, string header_image, string title, string summary, DateTime published) {
+        var type = ActionType.ADD_ARTICLE;
+        var payload = new Payload.AddArticle () {
+            feed = feed,
+            url = url,
+            header_image = header_image,
+            title = title,
+            summary = summary,
+            published = published
+        };
+
+        var action = new Flux.Action (type, payload);
+        Flux.Dispatcher.get_instance ().dispatch (action);
+    }
 }
