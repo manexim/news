@@ -17,7 +17,7 @@ namespace Payload {
     }
 
     public class AddArticle : Flux.Payload {
-        public string feed { get; set; }
+        public string feed_title { get; set; }
         public string url { get; set; }
         public string header_image { get; set; }
         public string title { get; set; }

@@ -22,7 +22,7 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
 
         load_images.begin ();
 
-        feed_title = new Gtk.Label ("elementary Blog");
+        feed_title = new Gtk.Label (article.feed_title);
         feed_title.halign = Gtk.Align.START;
         feed_title.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
 
@@ -37,7 +37,7 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
         title.halign = Gtk.Align.START;
         title.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
 
-        summary = new Gtk.Label (article.about);
+        summary = new Gtk.Label (article.summary);
         summary.halign = Gtk.Align.START;
         summary.ellipsize = Pango.EllipsizeMode.END;
 
@@ -57,10 +57,10 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
     private async void load_images () {
         var cache = Services.ImageCache.new_cache ();
 
-        if (article.image != null) {
+        if (article.header_image != null) {
             string? path = null;
 
-            int result = yield cache.fetch (article.image, out path);
+            int result = yield cache.fetch (article.header_image, out path);
             if (result == 0) {
                 var file = File.new_for_path (path);
 

@@ -23,10 +23,10 @@ namespace Actions {
         Flux.Dispatcher.get_instance ().dispatch (action);
     }
 
-    void add_article (string feed, string url, string header_image, string title, string summary, DateTime published) {
+    void add_article (string feed_title, string url, string header_image, string title, string summary, DateTime published) {
         var type = ActionType.ADD_ARTICLE;
         var payload = new Payload.AddArticle () {
-            feed = feed,
+            feed_title = feed_title,
             url = url,
             header_image = header_image,
             title = title,

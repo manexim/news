@@ -4,12 +4,10 @@
  */
 
 public class Models.Article : Object {
+    public string feed_title { get; set; }
     public string url { get; set; }
+    public string header_image { get; set; }
     public string title { get; set; }
-    public string about { get; set; }
-    public string content { get; set; }
-    public string image { get; set; }
-    public string favicon { get; set; }
+    public string summary { get; set; }
     public DateTime published { get; set; }
-    public DateTime updated { get; set; }
 }

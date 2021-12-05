@@ -72,7 +72,7 @@ public class FeedMiddleware : Flux.Middleware {
 
     private void process_add_article_response (Payload.AddArticle article) {
         Actions.add_article (
-            article.feed,
+            article.feed_title,
             article.url,
             article.header_image,
             article.title,
@@ -111,7 +111,7 @@ public class FeedMiddleware : Flux.Middleware {
                     break;
                 case "item":
                     var article = new Payload.AddArticle () {
-                        feed = url
+                        feed_title = feed.title
                     };
 
                     for (var childitem = child->children; childitem != null; childitem = childitem->next) {
@@ -184,7 +184,7 @@ public class FeedMiddleware : Flux.Middleware {
                     break;
                 case "entry":
                     var article = new Payload.AddArticle () {
-                        feed = url
+                        feed_title = feed.title
                     };
 
                     for (var childitem = child->children; childitem != null; childitem = childitem->next) {

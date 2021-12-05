@@ -46,7 +46,6 @@ public class Application : Granite.Application {
         );
 
         Actions.add_feed_request ("https://blog.elementary.io/feed.xml");
-        Actions.add_feed_request ("https://www.theverge.com/rss/index.xml");
     }
 
     public static int main (string[] args) {

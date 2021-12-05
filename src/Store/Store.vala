@@ -45,7 +45,7 @@ public class Store : Flux.Store {
         var feed = new Models.Feed (payload.url) {
             title = payload.title,
             description = payload.description,
-            link = payload.website,
+            website = payload.website,
             icon = payload.icon
         };
 
@@ -63,10 +63,10 @@ public class Store : Flux.Store {
         }
 
         var article = new Models.Article () {
-            url = payload.url,
+            feed_title = payload.feed_title,
             title = payload.title,
-            about = payload.summary,
-            image = payload.header_image,
+            summary = payload.summary,
+            header_image = payload.header_image,
             published = payload.published
         };
 
