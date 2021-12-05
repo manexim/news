@@ -4,27 +4,26 @@
  */
 
 public class Views.FeedView : Gtk.ScrolledWindow {
-    public Models.Feed model { get; construct set; }
+    private Gtk.Stack stack;
+    private Views.LoadingView loading_view;
+    private Gtk.Grid grid;
+    private Widgets.ArticleCarousel articles_carousel;
 
-    public FeedView (Models.Feed model) {
-        Object (
-            model: model
-        );
-
-        var stack = new Gtk.Stack ();
+    public FeedView () {
+        stack = new Gtk.Stack ();
         add (stack);
 
-        var loading_view = new Views.LoadingView (
+        loading_view = new Views.LoadingView (
             _("Loading articles")
         );
 
         stack.add (loading_view);
 
-        var grid = new Gtk.Grid ();
+        grid = new Gtk.Grid ();
         grid.margin = 12;
         stack.add (grid);
 
-        var articles_carousel = new Widgets.ArticleCarousel ();
+        articles_carousel = new Widgets.ArticleCarousel ();
 
         var articles_grid = new Gtk.Grid ();
         articles_grid.margin = 2;
@@ -42,13 +41,21 @@ public class Views.FeedView : Gtk.ScrolledWindow {
             );
         });
 
-        model.added_article.connect ((article) => {
-            if (stack.visible_child == loading_view) {
-                stack.set_visible_child (grid);
-                stack.remove (loading_view);
-            }
+        foreach (var article in Store.get_default ().articles) {
+            add_article (article);
+        }
 
-            articles_carousel.add_article (article);
+        Store.get_default ().on_add_article.connect ((article) => {
+            add_article (article);
         });
+    }
+
+    private void add_article (Models.Article article) {
+        if (stack.visible_child == loading_view) {
+            stack.set_visible_child (grid);
+            stack.remove (loading_view);
+        }
+
+        articles_carousel.add_article (article);
     }
 }

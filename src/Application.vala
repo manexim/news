@@ -27,6 +27,14 @@ public class Application : Granite.Application {
             );
         });
 
+        // Register Middlewares
+        Flux.Dispatcher.get_instance ().register_middleware (new LoggingMiddleware ());
+
+        Flux.Dispatcher.get_instance ().register_middleware (new FeedMiddleware ());
+
+        // Register Stores
+        Flux.Dispatcher.get_instance ().register_store (Store.get_default ());
+
         window = new MainWindow (this);
 
         window.show_all ();
@@ -36,6 +44,8 @@ public class Application : Granite.Application {
         Gtk.StyleContext.add_provider_for_screen (
             Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         );
+
+        Actions.add_feed_request ("https://blog.elementary.io/feed.xml");
     }
 
     public static int main (string[] args) {

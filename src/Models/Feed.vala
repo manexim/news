@@ -5,27 +5,14 @@
 
 public class Models.Feed : Object {
     public string url { get; construct set; }
-    public Array<Article> articles { get; construct set; }
     public string title { get; set; }
     public string description { get; set; }
-    public string link { get; set; }
-    public string source { get; set; }
-    public string copyright { get; set; }
-    public string favicon { get; set; }
-    public bool subscribed { get; set; }
-
-    public signal void added_article (Models.Article article);
+    public string website { get; set; }
+    public string icon { get; set; }
 
     public Feed (string url) {
         Object (
-            url: url,
-            articles: new Array<Article> ()
+            url: url
         );
-    }
-
-    public void add_article (Models.Article article) {
-        articles.append_val (article);
-
-        added_article (article);
     }
 }
