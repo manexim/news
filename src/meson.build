@@ -1,5 +1,14 @@
+config_data = configuration_data()
+config_data.set('APP_ID', meson.project_name())
+config_data.set('APP_VERSION', meson.project_version())
+
+config_file = configure_file(
+    input: 'Constants.vala.in',
+    output: '@BASENAME@',
+    configuration: config_data
+)
+
 sources = files(
-    'Config/Constants.vala',
     'Controllers/ArticleController.vala',
     'Controllers/FeedController.vala',
     'Controllers/WebsiteController.vala',
@@ -24,6 +33,7 @@ sources = files(
 executable(
     meson.project_name(),
     sources,
+    config_file,
     asresources,
     dependencies: dependencies,
     install: true
