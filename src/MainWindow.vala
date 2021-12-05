@@ -7,7 +7,7 @@
     private static MainWindow? instance;
     private Services.Settings settings;
 
-    private Gtk.ListBox listbox;
+    private Gtk.ListBox article_list_box;
     private Views.ArticleView article_view;
 
     public MainWindow (Gtk.Application application) {
@@ -23,14 +23,14 @@
             title = Constants.APP_NAME
         };
 
-        listbox = new Gtk.ListBox ();
+        article_list_box = new Gtk.ListBox ();
 
         var list_scrolled = new Gtk.ScrolledWindow (null, null) {
             hscrollbar_policy = Gtk.PolicyType.NEVER,
             width_request = 158,
             expand = true
         };
-        list_scrolled.add (listbox);
+        list_scrolled.add (article_list_box);
 
         article_view = new Views.ArticleView ();
 
@@ -61,7 +61,7 @@
             add_article (article);
         });
 
-        listbox.row_selected.connect ((row) => {
+        article_list_box.row_selected.connect ((row) => {
             print ("select: row == null: %s\n", row == null ? "true" : "false");
             if (row != null && row is Widgets.ArticleCarouselItem) {
                 var item = (Widgets.ArticleCarouselItem) row;
@@ -75,8 +75,8 @@
 
     private void add_article (Models.Article article) {
         var item = new Widgets.ArticleCarouselItem (article);
-        listbox.insert (item, -1);
-        listbox.show_all ();
+        article_list_box.insert (item, -1);
+        article_list_box.show_all ();
 
         article_view.load (article);
     }
