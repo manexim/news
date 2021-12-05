@@ -21,6 +21,6 @@ public class Services.Settings : Granite.Services.Settings {
     public bool window_maximized { get; set; }
 
     private Settings () {
-        base (Config.APP_ID);
+        base (Constants.APP_ID);
     }
 }
