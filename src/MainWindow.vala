@@ -41,10 +41,7 @@ public class MainWindow : Hdy.Window {
         main_layout.attach (headerbar, 0, 0);
         main_layout.attach (stack, 0, 1);
 
-        var window_handle = new Hdy.WindowHandle ();
-        window_handle.add (main_layout);
-
-        add (window_handle);
+        add (main_layout);
 
         stack.add_named (new Views.FeedView (), Constants.APP_NAME);
         history.add (Constants.APP_NAME);
