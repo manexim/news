@@ -32,14 +32,9 @@ public class Views.FeedView : Gtk.ScrolledWindow {
 
         grid.attach (articles_grid, 0, 0, 1, 1);
 
-        articles_carousel.on_article_activated.connect ((article) => {
-            var article_view = new Views.ArticleView (article);
-
-            MainWindow.get_default ().go_to_page (
-                article_view,
-                article.title
-            );
-        });
+        //  articles_carousel.on_article_activated.connect ((article) => {
+        //      var article_view = new Views.ArticleView (article);
+        //  });
 
         foreach (var article in Store.get_default ().articles) {
             add_article (article);

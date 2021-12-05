@@ -3,18 +3,16 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-public class MainWindow : Hdy.Window {
+ public class MainWindow : Hdy.Window {
     private static MainWindow? instance;
     private Services.Settings settings;
-    private Gtk.Stack stack;
-    private Gtk.Button return_button;
-    private Utilities.History history;
+
+    private Gtk.ListBox listbox;
+    private Views.ArticleView article_view;
 
     public MainWindow (Gtk.Application application) {
         instance = this;
         this.application = application;
-
-        history = new Utilities.History ();
 
         settings = Services.Settings.get_default ();
         load_settings ();
@@ -25,32 +23,62 @@ public class MainWindow : Hdy.Window {
             title = Constants.APP_NAME
         };
 
-        return_button = new Gtk.Button ();
-        return_button.no_show_all = true;
-        return_button.valign = Gtk.Align.CENTER;
-        return_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
-        return_button.clicked.connect (go_back);
-        headerbar.pack_start (return_button);
+        listbox = new Gtk.ListBox ();
 
-        stack = new Gtk.Stack () {
+        var list_scrolled = new Gtk.ScrolledWindow (null, null) {
+            hscrollbar_policy = Gtk.PolicyType.NEVER,
+            width_request = 158,
+            expand = true
+        };
+        list_scrolled.add (listbox);
+
+        article_view = new Views.ArticleView ();
+
+        var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
             hexpand = true,
             vexpand = true
         };
+        paned.pack1 (list_scrolled, false, false);
+        paned.pack2 (article_view, true, true);
 
         var main_layout = new Gtk.Grid ();
         main_layout.attach (headerbar, 0, 0);
-        main_layout.attach (stack, 0, 1);
+        main_layout.attach (paned, 0, 1);
 
         add (main_layout);
-
-        stack.add_named (new Views.FeedView (), Constants.APP_NAME);
-        history.add (Constants.APP_NAME);
 
         delete_event.connect (() => {
             save_settings ();
 
             return false;
         });
+
+        foreach (var article in Store.get_default ().articles) {
+            add_article (article);
+        }
+
+        Store.get_default ().on_add_article.connect ((article) => {
+            add_article (article);
+        });
+
+        listbox.row_selected.connect ((row) => {
+            print ("select: row == null: %s\n", row == null ? "true" : "false");
+            if (row != null && row is Widgets.ArticleCarouselItem) {
+                var item = (Widgets.ArticleCarouselItem) row;
+                print ("item: %s\n", item.article.url);
+                article_view.load (item.article);
+            } else {
+                article_view.load_uri ("");
+            }
+        });
+    }
+
+    private void add_article (Models.Article article) {
+        var item = new Widgets.ArticleCarouselItem (article);
+        listbox.insert (item, -1);
+        listbox.show_all ();
+
+        article_view.load (article);
     }
 
     construct {
@@ -59,39 +87,6 @@ public class MainWindow : Hdy.Window {
 
     public static MainWindow get_default () {
         return instance;
-    }
-
-    public void go_to_page (Gtk.Widget page, string name) {
-        page.show_all ();
-        stack.add_named (page, name);
-
-        return_button.label = history.current;
-        return_button.no_show_all = false;
-        return_button.visible = true;
-        history.add (name);
-        title = name;
-        stack.set_visible_child_full (name, Gtk.StackTransitionType.SLIDE_LEFT);
-    }
-
-    public void go_back () {
-        if (!history.is_homepage) {
-            var widget = stack.get_visible_child ();
-
-            stack.set_visible_child_full (history.previous, Gtk.StackTransitionType.SLIDE_RIGHT);
-            stack.remove (widget);
-
-            history.pop ();
-        }
-
-        if (!history.is_homepage) {
-            return_button.label = history.previous;
-            title = history.current;
-        } else {
-            return_button.no_show_all = true;
-            return_button.visible = false;
-
-            title = Constants.APP_NAME;
-        }
     }
 
     private void load_settings () {

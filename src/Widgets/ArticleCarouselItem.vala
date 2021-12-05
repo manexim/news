@@ -22,29 +22,36 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
 
         load_images.begin ();
 
-        feed_title = new Gtk.Label (article.feed_title);
-        feed_title.halign = Gtk.Align.START;
-        feed_title.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
+        feed_title = new Gtk.Label (article.feed_title) {
+            halign = Gtk.Align.START
+        };
 
-        age = new Gtk.Label (Granite.DateTime.get_relative_datetime (article.published));
-        age.halign = Gtk.Align.END;
-        age.tooltip_text = "%s %s".printf (
-            article.published.format (Granite.DateTime.get_default_date_format ()),
-            article.published.format (Granite.DateTime.get_default_time_format ())
-        );
+        age = new Gtk.Label (Granite.DateTime.get_relative_datetime (article.published)) {
+            halign = Gtk.Align.END,
+            tooltip_text = "%s %s".printf (
+                article.published.format (Granite.DateTime.get_default_date_format ()),
+                article.published.format (Granite.DateTime.get_default_time_format ())
+            )
+        };
 
-        title = new Gtk.Label (article.title);
-        title.halign = Gtk.Align.START;
-        title.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
+        title = new Gtk.Label (article.title) {
+            halign = Gtk.Align.START,
+            wrap = true,
+            wrap_mode = Pango.WrapMode.WORD
+        };
 
-        summary = new Gtk.Label (article.summary);
-        summary.halign = Gtk.Align.START;
-        summary.ellipsize = Pango.EllipsizeMode.END;
+        summary = new Gtk.Label (article.summary) {
+            halign = Gtk.Align.START,
+            wrap = true,
+            wrap_mode = Pango.WrapMode.WORD,
+            ellipsize = Pango.EllipsizeMode.END
+        };
 
-        var grid = new Gtk.Grid ();
-        grid.column_spacing = 12;
-        grid.row_spacing = 3;
-        grid.margin = 6;
+        var grid = new Gtk.Grid () {
+            column_spacing = 12,
+            row_spacing = 3,
+            margin = 6
+        };
         grid.attach (header_image, 0, 0, 1, 3);
         grid.attach (feed_title, 1, 0, 1, 1);
         grid.attach (age, 2, 0, 1, 1);
