@@ -5,6 +5,6 @@
 
 public class LoggingMiddleware : Flux.Middleware {
     public override void process (Flux.Action action) {
-        print ("%s: %s\n", action.action_type, Json.gobject_to_data (action.payload, null));
+        debug ("%s: %s", action.action_type, Json.gobject_to_data (action.payload, null));
     }
 }
