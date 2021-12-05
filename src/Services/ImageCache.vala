@@ -13,7 +13,7 @@ public class Services.ImageCache {
         var image_path = Path.build_filename (
             GLib.Environment.get_user_cache_dir (),
             Path.DIR_SEPARATOR_S,
-            Config.APP_ID,
+            Constants.APP_ID,
             "images"
         );
 

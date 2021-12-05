@@ -22,7 +22,7 @@ public class MainWindow : Hdy.Window {
         var headerbar = new Hdy.HeaderBar () {
             decoration_layout = "close:",
             show_close_button = true,
-            title = Config.APP_NAME
+            title = Constants.APP_NAME
         };
 
         return_button = new Gtk.Button ();
@@ -46,8 +46,8 @@ public class MainWindow : Hdy.Window {
 
         add (window_handle);
 
-        stack.add_named (new Views.FeedView (), Config.APP_NAME);
-        history.add (Config.APP_NAME);
+        stack.add_named (new Views.FeedView (), Constants.APP_NAME);
+        history.add (Constants.APP_NAME);
 
         delete_event.connect (() => {
             save_settings ();
@@ -93,7 +93,7 @@ public class MainWindow : Hdy.Window {
             return_button.no_show_all = true;
             return_button.visible = false;
 
-            title = Config.APP_NAME;
+            title = Constants.APP_NAME;
         }
     }
 

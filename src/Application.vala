@@ -8,7 +8,7 @@ public class Application : Granite.Application {
 
     public Application () {
         Object (
-            application_id: Config.APP_ID,
+            application_id: Constants.APP_ID,
             flags: ApplicationFlags.FLAGS_NONE
         );
     }
@@ -40,7 +40,7 @@ public class Application : Granite.Application {
         window.show_all ();
 
         var css_provider = new Gtk.CssProvider ();
-        css_provider.load_from_resource (Config.APP_STYLES);
+        css_provider.load_from_resource (Constants.APP_STYLES);
         Gtk.StyleContext.add_provider_for_screen (
             Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         );
