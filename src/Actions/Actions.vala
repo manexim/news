@@ -1,3 +1,8 @@
+/*
+ * Copyright 2019-2021 Manexim (https://github.com/manexim)
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 namespace Actions {
     void add_feed (string url, string title, string description, string website, string icon) {
         var type = ActionType.ADD_FEED;
