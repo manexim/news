@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2019 Manexim -->
+<!-- Copyright 2019-2021 Manexim -->
 <component type="desktop">
   <id>com.github.manexim.news</id>
   <metadata_license>CC0</metadata_license>
@@ -16,6 +16,29 @@
       <binary>com.github.manexim.news</binary>
   </provides>
   <releases>
+    <release date="2021-12-06" version="0.2.0">
+      <description>
+        <p>New:</p>
+        <ul>
+          <li>Using Hdy.Window for rounded corners</li>
+          <li>Support dark style preference</li>
+          <li>Redesigned UI</li>
+        </ul>
+        <p>Improved:</p>
+        <ul>
+        </ul>
+        <p>Fixed:</p>
+        <ul>
+        </ul>
+        <p>Translations:</p>
+        <ul>
+          <li>French (by NathanBnm)</li>
+          <li>German (by meisenzahl)</li>
+          <li>Spanish (by capitantrueno)</li>
+          <li>Portuguese (by rottenpants466)</li>
+        </ul>
+      </description>
+    </release>
     <release date="2019-11-10" version="0.1.5">
       <description>
         <p>New:</p>
