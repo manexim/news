@@ -23,22 +23,21 @@
             title = Constants.APP_NAME
         };
 
-        article_list_box = new Gtk.ListBox ();
-
-        var list_scrolled = new Gtk.ScrolledWindow (null, null) {
-            hscrollbar_policy = Gtk.PolicyType.NEVER,
-            width_request = 158,
-            expand = true
+        article_list_box = new Gtk.ListBox () {
+            selection_mode = Gtk.SelectionMode.SINGLE
         };
-        list_scrolled.add (article_list_box);
+
+        var article_list_scrolled = new Gtk.ScrolledWindow (null, null);
+        article_list_scrolled.add (article_list_box);
 
         article_view = new Views.ArticleView ();
 
         var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
             hexpand = true,
-            vexpand = true
+            vexpand = true,
+            position = 400
         };
-        paned.pack1 (list_scrolled, false, false);
+        paned.pack1 (article_list_scrolled, false, false);
         paned.pack2 (article_view, true, true);
 
         var main_layout = new Gtk.Grid ();
@@ -62,23 +61,16 @@
         });
 
         article_list_box.row_selected.connect ((row) => {
-            print ("select: row == null: %s\n", row == null ? "true" : "false");
-            if (row != null && row is Widgets.ArticleCarouselItem) {
-                var item = (Widgets.ArticleCarouselItem) row;
-                print ("item: %s\n", item.article.url);
-                article_view.load (item.article);
-            } else {
-                article_view.load_uri ("");
-            }
+            var article = ((Widgets.ArticleRow) row).article;
+            article_view.load (article);
+            headerbar.title = article.title;
         });
     }
 
     private void add_article (Models.Article article) {
-        var item = new Widgets.ArticleCarouselItem (article);
-        article_list_box.insert (item, -1);
+        var row = new Widgets.ArticleRow (article);
+        article_list_box.insert (row, -1);
         article_list_box.show_all ();
-
-        article_view.load (article);
     }
 
     construct {

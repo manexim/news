@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
+public class Widgets.ArticleRow : Gtk.ListBoxRow {
     public Models.Article article { get; construct set; }
     private Granite.AsyncImage header_image;
     private Gtk.Label feed_title;
@@ -11,10 +11,8 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
     private Gtk.Label title;
     private Gtk.Label summary;
 
-    public ArticleCarouselItem (Models.Article article) {
+    public ArticleRow (Models.Article article) {
         Object (article: article);
-
-        get_style_context ().add_class ("entry");
     }
 
     construct {
@@ -36,8 +34,11 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
 
         title = new Gtk.Label (article.title) {
             halign = Gtk.Align.START,
+            valign = Gtk.Align.START,
             wrap = true,
-            wrap_mode = Pango.WrapMode.WORD
+            wrap_mode = Pango.WrapMode.WORD,
+            hexpand = true,
+            vexpand = true
         };
 
         summary = new Gtk.Label (article.summary) {
@@ -72,7 +73,7 @@ public class Widgets.ArticleCarouselItem : Gtk.FlowBoxChild {
                 var file = File.new_for_path (path);
 
                 try {
-                    yield header_image.set_from_file_async (file, 160, 90, true);
+                    yield header_image.set_from_file_async (file, 80, 80, true);
                     header_image.halign = Gtk.Align.START;
                 } catch (Error e) {
                     warning (e.message);
