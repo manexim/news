@@ -4,10 +4,14 @@
  */
 
 public class Views.ArticleView : WebKit.WebView {
-    public ArticleView (Models.Article article) {
+    public void load (Models.Article article) {
+        load_uri (article.url);
+    }
+
+    public ArticleView () {
         var settings = get_settings ();
         settings.enable_javascript = true;
 
-        load_uri (article.url);
+        load_uri ("");
     }
 }

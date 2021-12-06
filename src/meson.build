@@ -20,13 +20,9 @@ sources = files(
     'Services/Settings.vala',
     'Store/Store.vala',
     'Utilities/DateTime.vala',
-    'Utilities/History.vala',
     'Utilities/URL.vala',
     'Views/ArticleView.vala',
-    'Views/FeedView.vala',
-    'Views/LoadingView.vala',
-    'Widgets/ArticleCarousel.vala',
-    'Widgets/ArticleCarouselItem.vala',
+    'Widgets/ArticleRow.vala',
     'MainWindow.vala',
     'Application.vala'
 )
