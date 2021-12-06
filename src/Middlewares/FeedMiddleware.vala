@@ -144,10 +144,14 @@ public class FeedMiddleware : Flux.Middleware {
             }
         }
 
-        on_add_feed_response (feed);
-        foreach (var article in articles) {
-            on_add_article_response (article);
-        }
+        Idle.add (() => {
+            on_add_feed_response (feed);
+            foreach (var article in articles) {
+                on_add_article_response (article);
+            }
+
+            return false;
+        });
     }
 
     private void parse_atom (Xml.Node* root, string url, bool parse_articles = false) {
@@ -226,10 +230,14 @@ public class FeedMiddleware : Flux.Middleware {
             }
         }
 
-        on_add_feed_response (feed);
-        foreach (var article in articles) {
-            on_add_article_response (article);
-        }
+        Idle.add (() => {
+            on_add_feed_response (feed);
+            foreach (var article in articles) {
+                on_add_article_response (article);
+            }
+
+            return false;
+        });
     }
 
     private string get_icon (string url) {

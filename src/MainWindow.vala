@@ -6,15 +6,13 @@
 public class MainWindow : Hdy.Window {
     private static MainWindow? instance;
     private Services.Settings settings;
-    private Gtk.Stack stack;
-    private Gtk.Button return_button;
-    private Utilities.History history;
+
+    private Gtk.ListBox article_list_box;
+    private Views.ArticleView article_view;
 
     public MainWindow (Gtk.Application application) {
         instance = this;
         this.application = application;
-
-        history = new Utilities.History ();
 
         settings = Services.Settings.get_default ();
         load_settings ();
@@ -25,35 +23,54 @@ public class MainWindow : Hdy.Window {
             title = Constants.APP_NAME
         };
 
-        return_button = new Gtk.Button ();
-        return_button.no_show_all = true;
-        return_button.valign = Gtk.Align.CENTER;
-        return_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
-        return_button.clicked.connect (go_back);
-        headerbar.pack_start (return_button);
-
-        stack = new Gtk.Stack () {
-            hexpand = true,
-            vexpand = true
+        article_list_box = new Gtk.ListBox () {
+            selection_mode = Gtk.SelectionMode.SINGLE
         };
+
+        var article_list_scrolled = new Gtk.ScrolledWindow (null, null);
+        article_list_scrolled.add (article_list_box);
+
+        article_view = new Views.ArticleView ();
+
+        var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
+            hexpand = true,
+            vexpand = true,
+            position = 400
+        };
+        paned.pack1 (article_list_scrolled, false, false);
+        paned.pack2 (article_view, true, true);
 
         var main_layout = new Gtk.Grid ();
         main_layout.attach (headerbar, 0, 0);
-        main_layout.attach (stack, 0, 1);
+        main_layout.attach (paned, 0, 1);
 
-        var window_handle = new Hdy.WindowHandle ();
-        window_handle.add (main_layout);
-
-        add (window_handle);
-
-        stack.add_named (new Views.FeedView (), Constants.APP_NAME);
-        history.add (Constants.APP_NAME);
+        add (main_layout);
 
         delete_event.connect (() => {
             save_settings ();
 
             return false;
         });
+
+        foreach (var article in Store.get_default ().articles) {
+            add_article (article);
+        }
+
+        Store.get_default ().on_add_article.connect ((article) => {
+            add_article (article);
+        });
+
+        article_list_box.row_selected.connect ((row) => {
+            var article = ((Widgets.ArticleRow) row).article;
+            article_view.load (article);
+            headerbar.title = article.title;
+        });
+    }
+
+    private void add_article (Models.Article article) {
+        var row = new Widgets.ArticleRow (article);
+        article_list_box.insert (row, -1);
+        article_list_box.show_all ();
     }
 
     construct {
@@ -62,39 +79,6 @@ public class MainWindow : Hdy.Window {
 
     public static MainWindow get_default () {
         return instance;
-    }
-
-    public void go_to_page (Gtk.Widget page, string name) {
-        page.show_all ();
-        stack.add_named (page, name);
-
-        return_button.label = history.current;
-        return_button.no_show_all = false;
-        return_button.visible = true;
-        history.add (name);
-        title = name;
-        stack.set_visible_child_full (name, Gtk.StackTransitionType.SLIDE_LEFT);
-    }
-
-    public void go_back () {
-        if (!history.is_homepage) {
-            var widget = stack.get_visible_child ();
-
-            stack.set_visible_child_full (history.previous, Gtk.StackTransitionType.SLIDE_RIGHT);
-            stack.remove (widget);
-
-            history.pop ();
-        }
-
-        if (!history.is_homepage) {
-            return_button.label = history.previous;
-            title = history.current;
-        } else {
-            return_button.no_show_all = true;
-            return_button.visible = false;
-
-            title = Constants.APP_NAME;
-        }
     }
 
     private void load_settings () {

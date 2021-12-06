@@ -64,6 +64,7 @@ public class Store : Flux.Store {
 
         var article = new Models.Article () {
             feed_title = payload.feed_title,
+            url = payload.url,
             title = payload.title,
             summary = payload.summary,
             header_image = payload.header_image,
