@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
- public class MainWindow : Hdy.Window {
+public class MainWindow : Hdy.Window {
     private static MainWindow? instance;
     private Services.Settings settings;
 

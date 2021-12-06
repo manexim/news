@@ -20,7 +20,6 @@ sources = files(
     'Services/Settings.vala',
     'Store/Store.vala',
     'Utilities/DateTime.vala',
-    'Utilities/History.vala',
     'Utilities/URL.vala',
     'Views/ArticleView.vala',
     'Views/LoadingView.vala',
