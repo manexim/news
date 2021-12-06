@@ -22,7 +22,6 @@ sources = files(
     'Utilities/DateTime.vala',
     'Utilities/URL.vala',
     'Views/ArticleView.vala',
-    'Views/LoadingView.vala',
     'Widgets/ArticleRow.vala',
     'MainWindow.vala',
     'Application.vala'
